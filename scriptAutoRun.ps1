@@ -174,6 +174,9 @@ function disableGuest(){
 	try{
         net user Guest /active:no
     }
+    catch{
+        Write-Host "guesdis fail"
+    }
 	Write-Host "Guest account disabled"
 }
 
@@ -185,6 +188,9 @@ function servicesFunc(){
     Write-host "Delete services  with following syntax :  Stop-Service <insert service name here>"
     Stop-Service "ftpsvc"
     Write-host "Dont forget to delete the FTP Server folder under control panel."
+    }
+    catch{
+        Write-Host "services FAIL"
     }
 }
 
