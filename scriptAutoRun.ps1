@@ -13,6 +13,8 @@ Write-Host '
 
 function regAdd(){
 try {
+
+    Write-host "Attempting sus asf registries"
     #Windows automatic updates
 	reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AutoInstallMinorUpdates /t REG_DWORD /d 1 /f
 	reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v NoAutoUpdate /t REG_DWORD /d 0 /f
@@ -497,6 +499,7 @@ function createDir() {
 }
 
 function callScripts(){
+    welcome
     createDir > $null
     regAdd > $null
     dnsFlush > $null
