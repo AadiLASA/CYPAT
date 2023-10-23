@@ -499,7 +499,6 @@ function createDir() {
 }
 
 function callScripts(){
-    welcome
     createDir > $null
     regAdd > $null
     dnsFlush > $null

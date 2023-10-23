@@ -1,3 +1,59 @@
+
+function Compare-UserLists {
+    try{}
+    catch{
+        
+    }
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$userList
+    )
+
+    # Split the input string into an array of users
+    $inputUsers = $userList -split ' '
+
+    # Get all local users on the system
+    $systemUsers = Get-LocalUser | ForEach -Object { $_.Name }
+
+    # Compare the system users with the input users
+    $usersNotInList = $systemUsers | Where-Object { $_ -notin $inputUsers }
+
+    # Output the users found on the system but not in the input list
+    Write-Output $usersNotInList
+}
+Compare-UserLists -userList (Read-Host "Enter a list of users (separated by spaces)")
+
+
+function Compare-AdminLists {
+    param (
+        [Parameter(Mandatory=$true)]
+        [string]$adminList
+    )
+
+    # Split the input string into an array of users
+    $inputAdmins = $adminList -split ' '
+
+    # Get all local administrators on the system
+    $systemAdmins = Get-LocalGroupMember -Group "Administrators" | ForEach-Object { $_.Name.Split('\')[-1] }
+
+    # Compare the system admins with the input admins
+    $adminsNotInList = $systemAdmins | Where-Object { $_ -notin $inputAdmins }
+    $nonAdminsInList = $inputAdmins | Where-Object { $_ -notin $systemAdmins }
+
+    # Output the admins found on the system but not in the input list
+    Write-Output "Administrators on system but not in list:"
+    Write-Output $adminsNotInList
+
+    # Output the users in the input list who are not admins on the system
+    Write-Output "Users in list who are not administrators:"
+    Write-Output $nonAdminsInList
+}
+
+# Call the function with a prompt for user input
+Compare-AdminLists -adminList (Read-Host "Enter a list of administrators (separated by spaces)")
+
+
+
 do {
     Write-Host "
     Type 'exit' to leave script.
@@ -98,3 +154,5 @@ do {
 }
 
 until ($input -eq "exit")
+
+
