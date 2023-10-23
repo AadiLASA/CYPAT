@@ -138,6 +138,9 @@ function dnsFlush(){try{
 	attrib +r +s C:\WINDOWS\system32\drivers\etc\hosts
 	Write-Host "Cleared hosts file."
 }
+catch{
+    Write-Host "DNSFLUSH FAIL"
+}
 }
 
 function passPoliciy(){try{
@@ -160,6 +163,9 @@ function passPoliciy(){try{
 	[int]$in = Read-host
 	net accounts /FORCELOGOFF:$in
 
+}
+catch{
+    Write-Host "PASSPOLICY FAIL"
 }
 }
 
@@ -203,6 +209,9 @@ function susFinder(){try{
 		if(Test-path $path\checkFilesOutput\$tool.txt){Clear-content "$path\checkFilesOutput\$tool.txt"}
 		C:\Windows\System32\cmd.exe /C dir C:\*$tool* /s /b | Out-File "$path\checkFilesOutput\$tool.txt"
 }
+}
+catch{
+    Write-Host "SUSFINDER FAIL"
 }
 }
 
