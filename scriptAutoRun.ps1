@@ -1,3 +1,5 @@
+set-executionpolicy Unrestricted
+
 function welcome(){
 Write-Host '
 
@@ -140,31 +142,31 @@ catch{
 }
 }
 
-function passPoliciy(){try{
-    Write-Host "UNIQUEPW:"
-	[int]$in = Read-host
-	net accounts /UNIQUEPW:$in
-	Write-Host "MINPWLEN:"
-	[int]$in = Read-host
-	net accounts /MINPWLEN:$in
-	Write-Host "MAXPWAGE:"
-	[int]$in = Read-host
-	net accounts /MAXPWAGE:$in
-	Write-Host "MINPWAGE:"
-	[int]$in = Read-host
-	net accounts /MINPWAGE:$in
-	Write-Host "lockoutthreshold:"
-	[int]$in = Read-host
-	net accounts /lockoutthreshold:$in
-	Write-Host "FORCELOGOFF:"
-	[int]$in = Read-host
-	net accounts /FORCELOGOFF:$in
+# function passPoliciy(){try{
+#     Write-Host "UNIQUEPW:"
+# 	[int]$in = Read-host
+# 	net accounts /UNIQUEPW:$in
+# 	Write-Host "MINPWLEN:"
+# 	[int]$in = Read-host
+# 	net accounts /MINPWLEN:$in
+# 	Write-Host "MAXPWAGE:"
+# 	[int]$in = Read-host
+# 	net accounts /MAXPWAGE:$in
+# 	Write-Host "MINPWAGE:"
+# 	[int]$in = Read-host
+# 	net accounts /MINPWAGE:$in
+# 	Write-Host "lockoutthreshold:"
+# 	[int]$in = Read-host
+# 	net accounts /lockoutthreshold:$in
+# 	Write-Host "FORCELOGOFF:"
+# 	[int]$in = Read-host
+# 	net accounts /FORCELOGOFF:$in
 
-}
-catch{
-    Write-Host "PASSPOLICY FAIL"
-}
-}
+# }
+# catch{
+#     Write-Host "PASSPOLICY FAIL"
+# }
+# }
 
 function disableGuest(){
     Write-Host "Disabling Guest account"
@@ -498,7 +500,7 @@ function callScripts(){
     createDir > $null
     regAdd > $null
     dnsFlush > $null
-    passPoliciy > $null
+    # passPoliciy > $null
     disableGuest > $null
     servicesFunc  > $null
     susFinder > $null
