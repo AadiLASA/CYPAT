@@ -1,12 +1,6 @@
 set-executionpolicy Unrestricted
 
-function welcome(){
-Write-Host '
-
-sussy script acitvated!
-                                
-'
-}
+function welcome(){Write-Host 'sussy script acitvated!'}
 
 function regAdd(){
 try {
