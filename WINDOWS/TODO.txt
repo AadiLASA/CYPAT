@@ -7,7 +7,8 @@ MY LITTLE PONY
 
 APERTURE :SKULL: Windows URA - forensics
 
-PEEP HARDENING KITTY???? (Could make all scripts and policy settings obselete—all I’ll have to do is updates, auditing, blue teaming, etc.)
+combine hardening kitty policy and og autorun into one script
+
 
 LEARN SYSINTERNALS FIX SCRIPT - automate auditing, make sure all the checklist stuff is in it
 LGPO
