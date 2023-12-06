@@ -1,0 +1,120 @@
+Cypat to do
+
+IMPORTANT IMAGES:
+MEDIUM KALI PATRIOT
+AMONG REINDEER
+MY LITTLE PONY
+
+APERTURE :SKULL: Windows URA - forensics
+
+PEEP HARDENING KITTY???? (Could make all scripts and policy settings obselete—all I’ll have to do is updates, auditing, blue teaming, etc.)
+
+LEARN SYSINTERNALS FIX SCRIPT - automate auditing, make sure all the checklist stuff is in it
+LGPO
+DO HARD IMAGES
+Revisit baseline after LGPO.  - RESEARCH MELD WIN10 EQUIVALENTS FOR BASELINING
+BROWSER CONFIGURATIONS (FIREFOX, CHROME)
+SFC SCANNOW
+ 
+LOOK INTO THE FOLLOWING SERVICES:
+IIS 
+SMB
+SMTP
+FTP (FileZilla)
+DNS
+RDP
+Active Directory (Domain Controller)
+HTTP/S: Apache2, IIS
+DNS: Windows DNS, Bind9
+Remote Management: OpenSSH, RDP
+Database Technology: MySQL/MariaDB, MSSQL 
+Mail: Exchange, MailEnable, Postfix, Sendmail
+File Sharing: FTP (vsFTPd, Filezilla, etc.), SMB (Samba, Windows SMB)
+CMS: WordPress, Joomla
+VPN: OpenVPN
+Identity Management: Active Directory Domain Services
+
+
+
+LOOK INTO THE FOLLOWING TOOLS:
+MBSA (7, 8.1, Server 2008,)
+Security essentials (7)
+Ninite (All)
+ProcessHacker / ProcessMonitor (All)
+ShowHidden (All)
+Malwarebytes / Malwarebytes Anti-Rootkit (7,8,10)
+Roguekiller (7, 8.1, 10)
+EMET (Server?)
+APPLOCKER
+
+
+Learn how to find and remove malware that malware bytes can’t get to
+Find out all bad file extensions
+Find out all necessary and bad autoruns
+On the image at home find all the default users who are there and then write script that compares default groups and groups on crypt machine.
+Hidden user
+File integrity monitoring
+
+
+
+MAKE SURE U CAN DO KEYLOGGER AND REVERSE SHELLS WITH SYSINTERNALS
+
+Windows:
+* Windows User Management
+* Local Security Policy
+* Group Policy
+* Registry Editor
+* Task Scheduler
+* Windows Defender
+* Permissions
+* Service Manager
+
+
+Get list of audits
+MORE COMPREHENSIVE LIST
+
+
+Windows #
+Account Security and Management 
+* Password Policy
+    * Defining password complexity, length, expiration, history, and hashing algorithms
+    * Configuring account lockout duration, threshold, administrative privileges, and reset procedures
+* User Account Management
+    * Creating, modifying, and disabling user accounts with appropriate access levels
+    * Managing user accounts, group memberships, and access privileges to ensure appropriate access control
+    * Updating passwords
+Application Security and Updates 
+* Application Updates
+    * Updates can be unique to each application
+    * Windows Updates can have some application updates
+    * Automatic updates when available
+    * Winget / Nuget / Ninite / Chocolatey
+    * About :: Help :: Check for updates
+* Software Installation Control
+    * Software installation permissions and preventing unauthorized applications using group policy
+* Application configuration and hardening
+    * Enable secure settings for applications such as Firefox or Internet Explorer and audit addons
+* Service Hardening and Disabling
+    * Evaluating and disabling unnecessary or insecure services for enhanced security
+    * Remote access services hardened or disabled
+        * RDP, SMB, LDAP, Kerberos, DNS, Print, WinRM, etc…
+Operating System Hardening and Updates 
+* Windows Update Management
+    * Applying critical updates, security patches, and feature updates to the Windows operating system
+* Configuring security options, group policies, and security templates to harden the Windows environment
+* Event Log audit policies, monitoring logs, and analyzing event data for security incidents
+    * Sysmon from Sysinternals
+* Configuring firewall rules to allow critical services
+* Antivirus and Endpoint Protection
+* BitLocker Encryption
+* Software/malware Detection and Removal
+    * Identifying and removing backdoors, keyloggers, rootkits, and other malware using antivirus tools and security software
+    * Using Sysinternals procmon/procexp/autoruns for detection
+* Prohibited Files and Software Handling
+    * Detecting and addressing prohibited files, unauthorized software, and potential security risks
+    * Alternate data streams
+    * icacls
+    * Identifying and removing unwanted games, scareware, adware, potentially unwanted programs (PUPs), and hacking tools
+* Scheduled Tasks
+* File sharing
+* Local Group Policy Editor and LGPO template
