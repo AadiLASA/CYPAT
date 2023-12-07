@@ -12,3 +12,5 @@ fully finish user automation
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
 how to find instances of elevated priveleges or file shares
 fond backdoors with netstat
+review mmc and browser settings
+review firewall rules
