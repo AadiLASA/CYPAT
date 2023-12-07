@@ -51,3 +51,102 @@ catch{
 Write-Host "Stopping Services Failed"
 
 }
+
+
+
+
+# Define the services and their recommended settings
+$services = @{
+    "AXInstSV" = "Disabled"
+    "AdobeARMservice" = "Disabled"
+    "AxInstSV" = "Disabled"
+    "CscService" = "Disabled"
+    "Dfs" = "Disabled"
+    "ERSvc" = "Disabled"
+    "EventSystem" = "Automatic"
+    "HomeGroupListener" = "Disabled"
+    "HomeGroupProvider" = "Disabled"
+    "IPBusEnum" = "Disabled"
+    "Iisadmin" = "Disabled"
+    "IsmServ" = "Disabled"
+    "MSDTC" = "Disabled"
+    "MSSQLServerADHelper" = "Disabled"
+    "Messenger" = "Disabled"
+    "Msftpsvc" = "Disabled"
+    "NetTcpPortSharing" = "Disabled"
+    "Netlogon" = "Disabled"
+    "NtFrs" = "Disabled"
+    "PolicyAgent" = "Automatic"
+    "RDSessMgr" = "Disabled"
+    "RSoPProv" = "Not Change"
+    "RasAuto" = "Disabled"
+    "RasMan" = "Manual"
+    "RemoteAccess" = "Disabled"
+    "RpcSs" = "Automatic"
+    "SCardSvr" = "Disabled"
+    "SENS" = "Automatic"
+    "SSDPSRV" = "Disabled"
+    "Sacsvr" = "Disabled"
+    "Server" = "Automatic"
+    "SessionEnv" = "Not Change"
+    "SharedAccess" = "Disabled"
+    "Smtpsvc" = "Disabled"
+    "Spooler" = "Automatic"
+    "SysMain" = "Automatic"
+    "TabletInputService" = "Manual"
+    "TapiSrv" = "Manual"
+    "TeamViewer" = "Disabled"
+    "TeamViewer7" = "Disabled"
+    "TermService" = "Manual"
+    "Themes" = "Automatic"
+    "TrkWks" = "Automatic"
+    "UmRdpService" = "Disabled"
+    "VDS" = "Manual"
+    "VSS" = "Manual"
+    "W3svc" = "Disabled"
+    "WAS" = "Disabled"
+    "WINS" = "Disabled"
+    "WmdmPmSN" = "Disabled"
+    "XblAuthManager" = "Disabled"
+    "XblGameSave" = "Disabled"
+    "XboxGipSvc" = "Disabled"
+    "fax" = "Disabled"
+    "ftpsvc" = "Disabled"
+    "helpsvc" = "Disabled"
+    "hidserv" = "Manual"
+    "iphlpsvc" = "Automatic"
+    "iprip" = "Disabled"
+    "lanmanserver" = "Automatic"
+    "lltdsvc" = "Disabled"
+    "mnmsrvc" = "Disabled"
+    "msftpsvc" = "Disabled"
+    "nfsclnt" = "Disabled"
+    "nfssvc" = "Disabled"
+    "p2pimsvc" = "Disabled"
+    "remoteregistry" = "Disabled"
+    "seclogon" = "Automatic"
+    "sessionenv" = "Not Change"
+    "simptcp" = "Disabled"
+    "snmptrap" = "Disabled"
+    "ssdpsrv" = "Disabled"
+    "termservice" = "Manual"
+    "tlntsvr" = "Disabled"
+    "uploadmgr" = "Disabled"
+    "upnphos" = "Disabled"
+    "upnphost" = "Disabled"
+    "xbgm" = "Disabled"
+    "xboxgip" = "Disabled"
+}
+
+# Apply the recommended settings
+foreach ($service in $services.GetEnumerator()) {
+    $serviceName = $service.Name
+    $serviceSetting = $service.Value
+
+    Write-Host "Setting $serviceName to $serviceSetting..."
+    try {
+        Set-Service -Name $serviceName -StartupType $serviceSetting
+    } catch {
+        Write-Host "Failed to set $serviceName to $serviceSetting. Error: $_"
+    }
+}
