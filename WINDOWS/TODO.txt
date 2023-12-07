@@ -4,7 +4,7 @@ fix reverse-shell
 look at the shell service scripts
 look at vedanth's scripts
 maybe improve file extension script
-combine scripts
+combine scripts, add wiper for existing policy
 wtf is service manager
 browser configs so no broswer vulns
 put as many solutions into document
