@@ -10,3 +10,4 @@ browser configs so no broswer vulns
 put as many solutions into document
 fully finish user automation
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
+how to find instances of elevated priveleges or file shares
