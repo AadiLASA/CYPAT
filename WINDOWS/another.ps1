@@ -17,10 +17,12 @@ function getHardeningKitty(){
 
     #invoke hardeningkitty
     Invoke-HardeningKitty -Mode HailMary -Log -Report -FileFindingList .\lists\finding_list_0x6d69636b_machine.csv
+	cd ..
      Write-Host "Hardening Kitty finished."
 
     }
     catch{
+    	cd ..
     Write-Host "Hardening Kitty Failed. Do it Manually"
     }
 
