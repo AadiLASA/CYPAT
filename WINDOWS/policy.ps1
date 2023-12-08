@@ -22,7 +22,7 @@ function setAudits(){
 
 
 function setPolicy(){
-secedit /configure /db secedit.sdb /cfg settings.inf /log log.txt /overwrite
+secedit /configure /db secedit.sdb /cfg ExportedSettings.inf /log log.txt /overwrite
 }
 
 
