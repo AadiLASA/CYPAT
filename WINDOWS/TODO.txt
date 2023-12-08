@@ -1,14 +1,10 @@
 my immediate todo:
 
-fix reverse-shell
+
 look at the shell service scripts
 look at v's scripts
-maybe improve file extension script
 combine scripts, add wiper for existing policy
-wtf is service manager
 browser configs so no broswer vulns
-put as many solutions into document
-fully finish user automation
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
 how to find instances of elevated priveleges or file shares
 fond backdoors with netstat
