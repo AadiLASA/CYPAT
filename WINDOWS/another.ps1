@@ -29,17 +29,20 @@ function getHardeningKitty(){
 
 
 function changePassWords(){
-$usernames = net user
+$Password = ConvertTo-SecureString "aPASSWORD1234!" -AsPlainText -Force
+$UserAccounts = Get-LocalUser
 
-foreach ($username in $usernames) {
-    # Generate a strong password
-    $password = PASSWORD1234!
-
-    # Change the password
-    net user $username $password
+foreach ($UserAccount in $UserAccounts) {
+    try {
+        $UserAccount | Set-LocalUser -Password $Password
+        Write-Output "Password for $($UserAccount.Name) has been changed."
+    } catch {
+        Write-Output "Failed to change password for $($UserAccount.Name)."
+    }
 }
 
-#changes passwords in system to PASSWORD1234!
+
+#changes passwords in system to aPASSWORD1234!
 }
 
 
@@ -538,7 +541,7 @@ function createDir() {
 function callScripts(){
     welcome
     createDir > $null
-    regAdd >
+    regAdd
     dnsFlush > $null
     # passPoliciy > $null
     disableGuest > $null
@@ -645,9 +648,28 @@ function Compare-AdminLists {
 
 
 function fullUserAuditing(){
-# Call the function with a prompt for user input
-Compare-UserLists -userList (Read-Host "Enter a list of users (separated by spaces)")
-Compare-AdminLists -adminList (Read-Host "Enter a list of administrators (separated by spaces)")
+# Read the users.txt file
+$authorized = Get-Content -Path .\users.txt
+
+# Split the file into admins and users
+$admins = $authorized[($authorized.IndexOf("Authorized Administrators:") + 1)..($authorized.IndexOf("Authorized Users:") - 1)]
+$users = $authorized[($authorized.IndexOf("Authorized Users:") + 1)..$authorized.Count]
+
+# Get the current users and admins from the system
+$currentUsers = Get-LocalUser | Where-Object { $_.Enabled -eq $True } | ForEach-Object { $_.Name }
+$currentAdmins = Get-LocalGroupMember -Group "Administrators" | ForEach-Object { $_.Name.Split('\')[-1] }
+
+# Determine which users to add, delete, promote, or demote
+$usersToAdd = Compare-Object -ReferenceObject $currentUsers -DifferenceObject ($admins + $users) | Where-Object { $_.SideIndicator -eq "=>" } | ForEach-Object { $_.InputObject }
+$usersToDelete = Compare-Object -ReferenceObject $currentUsers -DifferenceObject ($admins + $users) | Where-Object { $_.SideIndicator -eq "<=" } | ForEach-Object { $_.InputObject }
+$adminsToPromote = Compare-Object -ReferenceObject $currentAdmins -DifferenceObject $admins | Where-Object { $_.SideIndicator -eq "=>" } | ForEach-Object { $_.InputObject }
+$adminsToDemote = Compare-Object -ReferenceObject $currentAdmins -DifferenceObject $admins | Where-Object { $_.SideIndicator -eq "<=" } | ForEach-Object { $_.InputObject }
+
+# Output the results
+Write-Output "Users to Add: `n$($usersToAdd -join ', ')"
+Write-Output "Users to Delete: `n$($usersToDelete -join ', ')"
+Write-Output "Admins to Promote: `n$($adminsToPromote -join ', ')"
+Write-Output "Admins to Demote: `n$($adminsToDemote -join ', ')"
 
 $continue = $true
 while ($continue) {
@@ -695,42 +717,15 @@ Write-Host "Exiting program..."
 
 function importantCommands(){
 Start-Job -ScriptBlock { sfc /scannow }
-mkdir "logs"
-$outputFile = "logs\log.txt"
-# Define output file path
-
-
-# Clear output file
-Out-File -FilePath $outputFile -Force
-
-# Get network statistics
-$netstatOutput = netstat -a -b -p | Out-GridView -OutputMode Data | Select-Object -ExpandProperty DisplayName, Protocol, LocalAddress, ForeignAddress, State
-$netstatOutput | Out-File -FilePath $outputFile -Append -InputObject "**Netstat Output:**" -Prepend
-
-# Get file shares
-$fileShares = Get-FileShare -Protocol SMB
-$fileSharesOutput = $fileShares | Out-GridView -OutputMode Data | Select-Object -ExpandProperty Name, Path, Status
-$fileSharesOutput | Out-File -FilePath $outputFile -Append -InputObject "**File Shares:**" -Prepend
-
-# Get remote connections
-$remoteConnections = Get-NetConnection | Where-Object {$_.LocalAddress -ne '127.0.0.1'}
-$remoteConnectionsOutput = $remoteConnections | Out-GridView -OutputMode Data | Select-Object -ExpandProperty ComputerName, Username, Protocol, LocalAddress, RemoteAddress
-$remoteConnectionsOutput | Out-File -FilePath $outputFile -Append -InputObject "**Remote Connections:**" -Prepend
-
-# Get active network connections
-$connections = Get-Connection
-$connectionsOutput = $connections | Out-GridView -OutputMode Data | Select-Object -ExpandProperty Name, Protocol, RemoteAddress, State
-$connectionsOutput | Out-File -FilePath $outputFile -Append -InputObject "**Active Connections:**" -Prepend
-
 }
 
 
 
 function invokeScripts(){
+getHardeningKitty
 changePasswords
 importantCommands
 fullUserAuditing
-getHardeningKitty
 secureScript
 policySettings
 }
