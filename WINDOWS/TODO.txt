@@ -14,6 +14,7 @@ review firewall rules
 
 
 TODO FOR SEMIS
+fix user auditing script asap
 more cis baselining get every single group policy there is lmfao
 netstat more more more
   find out which pid's are bad
