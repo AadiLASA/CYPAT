@@ -10,3 +10,13 @@ how to find instances of elevated priveleges or file shares
 fond backdoors with netstat
 review mmc and browser settings
 review firewall rules
+
+
+
+TODO FOR SEMIS
+more cis baselining get every single group policy there is lmfao
+netstat more more more
+  find out which pid's are bad
+services : config blackviper's settings + reverse setting strategy 
+find out about prohib files
+get config files for appsec for common critical applications
