@@ -730,10 +730,10 @@ Start-Job -ScriptBlock { sfc /scannow }
 
 
 function invokeScripts(){
-getHardeningKitty
-changePasswords
-importantCommands
 fullUserAuditing
+changePasswords
+getHardeningKitty
+importantCommands
 secureScript
 policySettings
 }
