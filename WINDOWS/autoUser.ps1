@@ -1,5 +1,5 @@
 # Define the path to the input file
-$usersFilePath = "C:\path\to\users.txt"
+$usersFilePath = "users.txt"
 
 # Read the content of the file
 $usersFileContent = Get-Content -Path $usersFilePath
