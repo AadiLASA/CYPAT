@@ -24,3 +24,4 @@ get config files for appsec for common critical applications
 secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
+ORGANIZE THE FOLDER SKULL
