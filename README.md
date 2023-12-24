@@ -10,6 +10,6 @@ Thank you for your understanding and cooperation.
 
 ### Before USE
 set-executionpolicy unrestricted -force<br>
-Make directory on desktop
-Create passwords.txt file with spaces removed, passwrods removed, and (you) removed.
+Make directory on desktop<br>
+Create passwords.txt file with spaces removed, passwrods removed, and (you) removed.<br>
 Create log.txt file
