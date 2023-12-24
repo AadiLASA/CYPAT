@@ -23,6 +23,11 @@ secure various ports. learn how to use netstat -ano or other netstat tools to fi
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
 learn about appsec for common tools and browsers
 ORGANIZE THE FOLDER SKULL
+update checklist with more indepth step by step.
+  optimize it for speed
+  do runs in different VMs
+  have fallback for after completion
+  
 
 
 MOST IMPORTANT ULTRA:
