@@ -16,7 +16,6 @@ more cis baselining get every single group policy there is lmfao (go through all
 netstat more more more
   find out which pid's are bad
 services : black viper is meh revisit (CIS service script is implemented but might need some fine tuning later)
-find out about prohib files
 get config files for appsec for common critical applications
 secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
