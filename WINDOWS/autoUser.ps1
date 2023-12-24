@@ -24,6 +24,7 @@ $currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Admin
 $currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
 $unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
 foreach ($admin in $unauthorizedAdmins) {
+    Write-Host "Removing Admin Priv: $admin"
     Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
 }
 
@@ -32,20 +33,38 @@ foreach ($admin in $unauthorizedAdmins) {
 $missingUsers = $authorizedUsers | Where-Object { $currentUserAccounts -notcontains $_ }
 foreach ($user in $missingUsers) {
     # Note: Creating user without password; may need to add password creation logic
-    New-LocalUser -Name $user -AccountNeverExpires -PasswordNeverExpires -ErrorAction SilentlyContinue
+    Write-Host "Adding: $user"
+    New-LocalUser -Name $user -AccountNeverExpires -NoPassword -ErrorAction SilentlyContinue
 }
 
 # Remove unauthorized users
 $unauthorizedUsers = $currentUserAccounts | Where-Object { $authorizedUsers -notcontains $_ -and $authorizedAdmins -notcontains $_ }
 foreach ($user in $unauthorizedUsers) {
+    Write-Host "Removing: $user"
     Remove-LocalUser -Name $user -ErrorAction SilentlyContinue
 }
 
 
 $missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
 foreach ($admin in $missingAdmins) {
+    Write-Host "Adding Admin: $admin"
     Add-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
 }
 
 # Output completion message
 Write-Host "User accounts have been updated according to the authorized list."
+
+Write-Host "Now Changing Passwords:"
+
+$Password = ConvertTo-SecureString "aPASSWORD1234!" -AsPlainText -Force
+$UserAccounts = Get-LocalUser
+
+foreach ($UserAccount in $UserAccounts) {
+    try {
+        $UserAccount | Set-LocalUser -Password $Password
+        Write-Output "Password for $($UserAccount.Name) has been changed."
+    } catch {
+        Write-Output "Failed to change password for $($UserAccount.Name)."
+    }
+}
+
