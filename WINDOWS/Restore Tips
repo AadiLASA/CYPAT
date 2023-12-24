@@ -1,5 +1,3 @@
-reneable Powershell and MMC through Group Policy
-
 POWERSHELL
         Press Win + R, type gpedit.msc, and press Enter.
         Navigate to User Configuration -> Administrative Templates -> System.
@@ -11,4 +9,65 @@ POWERSHELL
 MMC
         Still in Group Policy Editor, navigate to User Configuration -> Administrative Templates -> System.
         Find settings related to the specific tools you want to enable (like MMC restrictions) and set them to Disabled or Not Configured.
+
+
+
+MALICIOUS AUTOSTART AFFECTING Group Policy or malicious autostarts in general
+
+1. Check Startup Programs
+
+    Use the Task Manager (Ctrl + Shift + Esc) to review the list of startup programs. Look for any unfamiliar or suspicious applications that might be related to the reapplication of Group Policy.
+    You can disable any suspicious startup items from here.
+
+2. Examine Scheduled Tasks
+
+    Open Task Scheduler (taskschd.msc) and check for any tasks that are set to run at logon or at regular intervals that might be responsible for applying Group Policy settings.
+    Look for tasks with actions involving scripting tools or policy-related commands.
+
+3. Inspect Scripts in Common Startup Locations
+
+    Check common script locations such as C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp or the Startup folder in the user's profile.
+    Also, check the registry keys for startup scripts: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run and HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run.
+
+4. Use System Configuration (msconfig)
+
+    Run msconfig to access System Configuration. Check the Services and Startup tabs for any unusual entries.
+
+5. Review Group Policy Scripts
+
+    If you have access, check Group Policy scripts that might be applied. Look under Computer Configuration or User Configuration in the Group Policy Editor (gpedit.msc) for any startup scripts.
+
+6. Conduct a Malware Scan
+
+    Perform a thorough scan of your system using a reliable antivirus or anti-malware program. Malicious software could be responsible for reapplying these policies.
+
+7. Monitor with Sysinternals Tools
+
+    Use tools from the Sysinternals Suite like Process Explorer or Autoruns to get a more detailed view of what's running on your system and what's configured to run at startup.
+
+8. Use Event Viewer
+
+    The Event Viewer (eventvwr.msc) can provide logs that might indicate what processes or scripts are being executed at logon.
+
+To investigate potential reapplication of Group Policy settings or other suspicious activities, certain logs within the Event Viewer can be particularly helpful. Here are the relevant ones:
+Event Viewer Logs to Check
+
+    Security Logs
+        These logs can provide information about login attempts, changes to security settings, and other security-related activities. Look for any unusual patterns or entries around the times you suspect Group Policy settings were modified.
+
+    System Logs
+        System logs contain events logged by the operating system components. These can include system errors, warnings, and informational events, some of which may be related to Group Policy changes.
+
+    Application Logs
+        These logs hold events logged by applications. If a specific application is responsible for modifying Group Policy settings, you might find relevant entries here.
+
+    Group Policy Operational Logs
+        Located under "Applications and Services Logs" -> "Microsoft" -> "Windows" -> "GroupPolicy" -> "Operational". This log specifically tracks Group Policy processing and can be very useful in identifying when and how Group Policy was applied or refreshed.
+
+Event IDs to Look For
+
+    Event ID 4688: A new process has been created (can help track execution of scripts or programs).
+    Event ID 4738: A user account was changed (might indicate changes in user privileges or settings).
+    Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
+    Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
 
