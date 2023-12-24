@@ -1,0 +1,266 @@
+AxInstSV,Manual
+AJRouter,Disabled 
+AppReadiness,Manual
+AppHostSvc,Not Installed
+AppIDSvc,Manual
+Appinfo,Manual
+ALG,Disabled 
+AppMgmt,Disabled 
+AppXSVC,Manual
+AssignedAccessManagerSvc,Manual
+aspnet_state,Not Installed
+tzautoupdate,Disabled
+BthAvctpSvc,Disabled 
+BITS,Automatic
+BrokerInfrastructure,Automatic
+BFE,Automatic
+BDESVC,Manual
+wbengine,Manual
+BTAGService,Disabled 
+bthserv,Disabled 
+BluetoothUserService_?????,Manual
+PeerDistSvc,Disabled 
+camsvc,Manual
+CaptureService_?????,Disabled 
+CertPropSvc,Disabled 
+c2wts,Not Installed
+NfsClnt,Disabled 
+ClipSVC,Manual
+KeyIso,Manual
+EventSystem,Automatic
+COMSysApp,Manual
+Browser,Manual
+CDPSvc,Automatic
+CDPUserSvc_?????,Automatic
+DiagTrack,Automatic
+PimIndexMaintenanceSvc_?????,Manual
+CoreMessagingRegistrar,Automatic
+VaultSvc,Manual
+CryptSvc,Automatic
+DsSvc,Manual
+DusmSvc,Automatic
+DcomLaunch,Automatic
+DoSvc,Automatic
+DeviceAssociationService,Manual
+DeviceInstall,Manual
+DmEnrollmentSvc,Manual
+DsmSVC,Manual
+DevicePickerUserSvc_?????,Manual
+DevicesFlowUserSvc_?????,Manual
+DevQueryBroker,Manual
+Dhcp,Automatic
+diagsvc,Manual
+DPS,Automatic
+WdiServiceHost,Manual
+WdiSystemHost,Manual
+TrkWks,Automatic
+MSDTC,Manual
+dmwappushsvc,Disabled 
+Dnscache,Automatic
+MapsBroker,Disabled 
+DsRoleSvc,Not installed
+embeddedmode,Manual
+EFS,Manual
+EntAppSvc,Manual
+EapHost,Manual
+Fax,Uninstalled 
+fhsvc,Manual
+fdPHost,Manual
+FDResPub,Manual
+BcastDVRUserService_?????,Manual
+lfsvc,Disabled 
+GraphicsPerfSvc,Manual
+gpsvc,Automatic
+hns,Not Installed
+hidserv,Manual
+HvHost,Disabled 
+vmickvpexchange,Disabled 
+vmicguestinterface,Disabled 
+vmicshutdown,Disabled 
+vmicheartbeat,Disabled 
+vmcompute,Not Installed
+vmicvmsession,Disabled 
+vmicrdv,Disabled 
+vmictimesync,Disabled 
+vmms,Not Installed
+vmicvss,Disabled 
+IISADMIN,Not Installed
+IKEEXT,Manual
+irmon,Disabled 
+UI0Detect,Manual
+SharedAccess,Disabled 
+iphlpsvc,Disabled 
+IpxlatCfgSvc,Disabled 
+PolicyAgent,Manual
+KtmRm,Manual
+lltdsvc,Manual
+wlpasvc,Manual
+LSM,Automatic
+LPDSVC,Not Installed
+LxssManager,Not Installed
+MSMQ,Not Installed
+MSMQTriggers,Not Installed
+MessagingService_?????,Manual
+diagnosticshub.standardcollector.service,Manual
+wlidsvc,Manual
+AppVClient,Disabled
+ftpsvc,Not Installed
+MSiSCSI,Disabled 
+MsKeyboardFilter,Not Installed
+NgcSvc,Manual
+NgcCtnrSvc,Manual
+swprv,Manual
+smphost,Manual
+InstallService,Manual
+SmsRouter,Disabled 
+WmsRepair,Not Installed
+Wms,Not Installed
+NaturalAuthentication,Disabled 
+NetMsmqActivator,Not Installed
+NetPipeActivator,Not Installed
+NetTcpActivator,Not Installed
+NetTcpPortSharing,Uninstalled 
+Netlogon,Disabled 
+NcdAutoSetup,Disabled 
+NcbService,Manual
+Netman,Manual
+NcaSVC,Manual
+netprofm,Manual
+NlaSvc,Automatic
+NetSetupSvc,Manual
+nsi,Automatic
+CscService,Disabled 
+ssh-agent,Manual
+defragsvc,Manual
+WpcMonSvc,Disabled 
+SEMgrSvc,Disabled 
+PNRPsvc,Manual
+p2psvc,Manual
+p2pimsvc,Manual
+PerfHost,Manual
+pla,Manual
+PhoneSvc,Disabled 
+PlugPlay,Manual
+PNRPAutoReg,Manual
+WPDBusEnum,Manual
+Power,Automatic
+Spooler,Automatic
+PrintNotify,Manual
+PrintWorkflowUserSvc_?????,Manual
+wercplsupport,Manual
+PcaSvc,Automatic
+QWAVE,Manual
+RmSvc,Manual
+RasAuto,Manual
+RasMan,Manual
+SessionEnv,Disabled 
+TermService,Disabled 
+UmRdpService,Disabled 
+RpcSs,Automatic
+RpcLocator,Disabled 
+RemoteRegistry,Disabled
+RetailDemo,Disabled 
+iprip,Not Installed
+RemoteAccess,Disabled
+RpcEptMapper,Automatic
+seclogon,Manual
+SstpSvc,Manual
+SamSs,Automatic
+wscsvc,Automatic
+SensorDataService,Disabled 
+SensrSvc,Disabled 
+SensorService,Disabled 
+LanmanServer,Automatic
+shpamsvc,Disabled
+ShellHWDetection,Automatic
+simptcp,Not Installed
+SCardSvr,Disabled
+ScDeviceEnum,Disabled 
+SCPolicySvc,Disabled 
+SNMP,Not Installed
+SNMPTRAP,Disabled 
+sppsvc,Automatic
+SharedRealitySvc,Manual
+svsvc,Manual
+SSDPSRV,Manual
+StateRepository,Manual
+WiaRpc,Manual
+StorSvc,Manual
+TieringEngineService,Manual
+SysMain,Automatic
+OneSyncSvc_?????,Automatic
+SENS,Automatic
+SystemEventsBroker,Automatic
+SgrmBroker,Automatic
+Schedule,Automatic
+lmhosts,Manual
+TapiSrv,Manual
+Themes,Automatic
+TimeBroker,Manual
+TabletInputService,Disabled 
+UwfServcingSvc,Not Installed
+UsoSvc,Manual
+upnphost,Manual
+UserDataSvc_?????,Manual
+UnistoreSvc_?????,Manual
+UevAgentService,Disabled
+UserManager,Automatic
+ProfSvc,Automatic
+vds,Manual
+VSS,Manual
+W3LOGSVC,Not Installed
+WalletService,Manual
+WMSVC,Not Installed
+WarpJITSvc,Manual
+TokenBroker,Manual
+WebClient,Disabled 
+WFDSConSvc,Disabled 
+AudioSrv,Automatic
+AudioEndpointBuilder,Automatic
+SDRSVC,Manual
+WbioSrvc,Manual
+FrameServer,Disabled 
+wcncsvc,Disabled 
+Wcmsvc,Automatic
+Sense,Manual
+WdNisSvc,Manual
+WinDefend,Automatic
+MpsSvc,Automatic
+SecurityHealthService,Automatic
+WEPHOSTSVC,Manual
+WerSvc,Manual
+Wecsvc,Manual
+EventLog,Automatic
+FontCache,Automatic
+StiSvc,Manual
+wisvc,Disabled 
+msiserver,Manual
+LicenseManager,Manual
+Winmgmt,Automatic
+WMPNetworkSvc,Disabled  
+icssvc,Disabled 
+TrustedInstaller,Manual
+spectrum,Manual
+FontCache3.0.0.0,Not Installed
+WAS,Not Installed
+WpnService,Automatic
+WpnUserService_?????,Automatic
+PushToInstall,Manual
+WinRM,Disabled 
+WSearch,Automatic 
+W32Time,Manual
+wuauserv,Manual
+WaaSMedicSvc,Manual
+WinHttpAutoProxySvc,Manual
+dot3svc,Manual
+WlanSvc,Manual
+wmiApSrv,Manual
+workfolderssvc,Uninstalled 
+LanmanWorkstation,Automatic
+W3SVC,Not Installed
+WwanSvc,Disabled 
+XboxGipSvc,Manual
+xbgm,Manual
+XblAuthManager,Disabled 
+XblGameSave,Disabled 
+XboxNetApiSvc,Disabled 
