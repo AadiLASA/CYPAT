@@ -2,18 +2,15 @@ my immediate todo:
 
 
 look at the shell service scripts
-look at v's scripts
-combine scripts, add wiper for existing policy
 browser configs so no broswer vulns
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
 how to find instances of elevated priveleges or file shares
-fond backdoors with netstat
-review mmc and browser settings
 review firewall rules
 
 
 
-TODO FOR SEMIS
+TODO FOR SEMIS:
+
 fix user auditing script asap
 more cis baselining get every single group policy there is lmfao (go through all there is a lot)
 netstat more more more
