@@ -27,7 +27,14 @@ update checklist with more indepth step by step.
   optimize it for speed
   do runs in different VMs
   have fallback for after completion
-  
+check for cross user directory permissions
+check for possibility of restoring service settings to original windows settings almost like my policy wiper 
+go through chrome cis and configure possible script to execute all secure settings
+literally go through all cis for the rest of group policy for obscure settings
+once everything is done start actually learning how things work so you can tepuvlefix service or malware issues you’re gonna destroy vedanth and gideon
+go through aperture for advice
+personally configure some hidden files deep in user directories and see if sus finder can get it
+
 
 
 MOST IMPORTANT ULTRA:
