@@ -1,0 +1,14 @@
+reneable Powershell and MMC through Group Policy
+
+POWERSHELL
+        Press Win + R, type gpedit.msc, and press Enter.
+        Navigate to User Configuration -> Administrative Templates -> System.
+        Find and double-click on Don't run specified Windows applications.
+        Set it to Disabled or Not Configured.
+        Navigate to Computer Configuration -> Administrative Templates -> Windows Components -> Windows PowerShell.
+        Ensure Turn on Script Execution is set to Enabled and configure the execution policy as needed (e.g., Allow all scripts).
+
+MMC
+        Still in Group Policy Editor, navigate to User Configuration -> Administrative Templates -> System.
+        Find settings related to the specific tools you want to enable (like MMC restrictions) and set them to Disabled or Not Configured.
+
