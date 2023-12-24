@@ -71,3 +71,81 @@ Event IDs to Look For
     Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
     Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
 
+
+
+
+
+COMMONLY TARGETED REGISTRY KEYS
+
+
+In the context of cyber attacks on Windows systems, certain registry keys are often targeted because they control critical aspects of the system's behavior, security, and user settings. Attackers may modify these keys to gain persistence, elevate privileges, disable security mechanisms, or for other malicious purposes. Here are some commonly targeted registry keys, what they control, and what their typical or secure values should be:
+1. AutoRun and AutoStart Locations
+
+    Targeted Keys:
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    Controls: Programs that automatically start when a user logs in.
+    Secure Value: Only legitimate and necessary applications should be listed. Be wary of unfamiliar or suspicious entries.
+
+2. SafeBoot Configuration
+
+    Targeted Key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot
+    Controls: Configuration for Safe Mode boot.
+    Secure Value: Modifications here can be suspicious, as malware might attempt to disable certain services in Safe Mode.
+
+3. UserInit Key
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit
+    Controls: Specifies programs that are run when a user logs on to the system.
+    Secure Value: Default value is usually C:\Windows\system32\userinit.exe,. Additional entries could be indicative of tampering.
+
+4. AppInit_DLLs
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs
+    Controls: Lists DLLs to be loaded at system startup.
+    Secure Value: Should be empty or contain only known legitimate DLLs. Malware often uses this key to load malicious DLLs.
+
+5. EnabledDebuggers (Image File Execution Options)
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options
+    Controls: Debugger settings for executables.
+    Secure Value: Malware may set debuggers for certain processes (like antivirus programs) to interfere with their execution. Be cautious of unexpected debuggers.
+
+6. Shell and Explorer Extensions
+
+    Targeted Keys:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts
+    Controls: Configurations for shell and file explorer behavior.
+    Secure Value: Look out for unknown or untrusted extensions.
+
+7. Security Providers
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SecurityProviders
+    Controls: Lists security provider DLLs.
+    Secure Value: Should typically include credssp.dll, wdigest.dll, schannel.dll, msapsspc.dll. Additional or replaced DLLs might indicate tampering.
+
+
+Windows Defender and Automatic Updates are critical components of Windows 10 security, and their configurations can be managed through specific registry keys. However, it's important to handle these settings with care, as improper modifications can compromise system security. Below are the key registry settings for enabling Windows Defender and Automatic Updates, along with their recommended values:
+Windows Defender
+
+    DisableAntiSpyware and DisableAntiVirus (Windows Defender)
+        Registry Key Path:
+            HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender
+        Values:
+            DisableAntiSpyware: Should be set to 0 (or the key should not exist) to ensure Windows Defender Antivirus is enabled.
+            DisableAntiVirus: Should also be 0 (or not exist) for Windows Defender Antivirus to remain active.
+        Note: These settings might be managed by Group Policy in some organizational environments, especially if an alternative antivirus solution is in use.
+
+Automatic Updates
+
+    AUOptions (Automatic Updates)
+        Registry Key Path:
+            HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+        Values:
+            AUOptions: Determines the configuration of Automatic Updates.
+                2 = Notify for download and notify for install.
+                3 = Auto download and notify for install.
+                4 = Auto download and schedule the install (recommended for most users).
+                5 = Allow local admin to choose the setting.
+        Note: Ensure the NoAutoUpdate key is set to 0 to enable automatic updates.
