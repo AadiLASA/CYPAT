@@ -42,3 +42,4 @@ personally configure some hidden files deep in user directories and see if sus f
 MOST IMPORTANT ULTRA:
 make sure scripts are all working well out the box from single runnable powershell file. I should just make directory, passwords txt, different logs, and I should be done
 Make it so you can run one thing and every script gets set up
+go through GPT fixes onc checklist and ask everything about windows to learn how everything works
