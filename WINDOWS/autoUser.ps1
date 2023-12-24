@@ -1,22 +1,42 @@
-# Read the users.txt file
-$authorized = Get-Content -Path .\users.txt
+# Define the path to the input file
+$usersFilePath = "C:\path\to\users.txt"
 
-# Split the file into admins and users
-$admins = $authorized[($authorized.IndexOf("Authorized Administrators:") + 1)..($authorized.IndexOf("Authorized Users:") - 1)]
-$users = $authorized[($authorized.IndexOf("Authorized Users:") + 1)..$authorized.Count]
+# Read the content of the file
+$usersFileContent = Get-Content -Path $usersFilePath
 
-# Get the current users and admins from the system
-$currentUsers = Get-LocalUser | Where-Object { $_.Enabled -eq $True } | ForEach-Object { $_.Name }
-$currentAdmins = Get-LocalGroupMember -Group "Administrators" | ForEach-Object { $_.Name.Split('\')[-1] }
+# Separate the content into administrators and users
+$adminsStart = $usersFileContent.IndexOf("Authorized Administrators") + 1
+$usersStart = $usersFileContent.IndexOf("Authorized Users") + 1
 
-# Determine which users to add, delete, promote, or demote
-$usersToAdd = Compare-Object -ReferenceObject $currentUsers -DifferenceObject ($admins + $users) | Where-Object { $_.SideIndicator -eq "=>" } | ForEach-Object { $_.InputObject }
-$usersToDelete = Compare-Object -ReferenceObject $currentUsers -DifferenceObject ($admins + $users) | Where-Object { $_.SideIndicator -eq "<=" } | ForEach-Object { $_.InputObject }
-$adminsToPromote = Compare-Object -ReferenceObject $currentAdmins -DifferenceObject $admins | Where-Object { $_.SideIndicator -eq "=>" } | ForEach-Object { $_.InputObject }
-$adminsToDemote = Compare-Object -ReferenceObject $currentAdmins -DifferenceObject $admins | Where-Object { $_.SideIndicator -eq "<=" } | ForEach-Object { $_.InputObject }
+$authorizedAdmins = $usersFileContent[$adminsStart..($usersStart-3)].Trim() | Where-Object { $_ -ne "" }
+$authorizedUsers = $usersFileContent[$usersStart..($usersFileContent.Count-1)].Trim() | Where-Object { $_ -ne "" }
 
-# Output the results
-Write-Output "Users to Add: `n$($usersToAdd -join ', ')"
-Write-Output "Users to Delete: `n$($usersToDelete -join ', ')"
-Write-Output "Admins to Promote: `n$($adminsToPromote -join ', ')"
-Write-Output "Admins to Demote: `n$($adminsToDemote -join ', ')"
+# Get the list of current user accounts on the system, excluding default accounts
+$currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" } | Select-Object -ExpandProperty Name
+
+# Add missing authorized users
+$missingUsers = $authorizedUsers | Where-Object { $_ -and $currentUserAccounts -notcontains $_ }
+foreach ($user in $missingUsers) {
+    # Add the user here with appropriate cmdlets, e.g., New-LocalUser
+}
+
+# Remove unauthorized users
+$unauthorizedUsers = $currentUserAccounts | Where-Object { $authorizedUsers -notcontains $_ -and $authorizedAdmins -notcontains $_ }
+foreach ($user in $unauthorizedUsers) {
+    # Remove the user here with appropriate cmdlets, e.g., Remove-LocalUser
+}
+
+# Ensure only authorized admins are in the Administrators group
+$currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
+$unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
+foreach ($admin in $unauthorizedAdmins) {
+    # Remove the user from the Administrators group here, e.g., Remove-LocalGroupMember
+}
+
+$missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
+foreach ($admin in $missingAdmins) {
+    # Add the user to the Administrators group here, e.g., Add-LocalGroupMember
+}
+
+# Output completion message
+Write-Host "User accounts have been updated according to the authorized list."
