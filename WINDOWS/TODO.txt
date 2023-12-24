@@ -21,6 +21,5 @@ netstat more more more
 services : black viper is meh revisit (CIS service script is implemented but might need some fine tuning later)
 find out about prohib files
 get config files for appsec for common critical applications
-(IMPORTANT) learn the important audits for event viewer [what is the IDs for make file, change audits, change all the policies, change important settings, change firewall rules, etc.
 secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
