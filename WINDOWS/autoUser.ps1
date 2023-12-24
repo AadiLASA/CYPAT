@@ -20,6 +20,14 @@ $authorizedUsers = $usersFileContent[$usersStart..($usersFileContent.Count-1)].T
 # Get the list of current user accounts on the system, excluding default accounts
 $currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" } | Select-Object -ExpandProperty Name
 
+# Ensure only authorized admins are in the Administrators group
+$currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
+$unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
+foreach ($admin in $unauthorizedAdmins) {
+    Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
+}
+
+
 # Add missing authorized users
 $missingUsers = $authorizedUsers | Where-Object { $currentUserAccounts -notcontains $_ }
 foreach ($user in $missingUsers) {
@@ -33,12 +41,6 @@ foreach ($user in $unauthorizedUsers) {
     Remove-LocalUser -Name $user -ErrorAction SilentlyContinue
 }
 
-# Ensure only authorized admins are in the Administrators group
-$currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
-$unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
-foreach ($admin in $unauthorizedAdmins) {
-    Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
-}
 
 $missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
 foreach ($admin in $missingAdmins) {
