@@ -11,7 +11,7 @@ review firewall rules
 
 TODO FOR SEMIS:
 
-fix user auditing script asap
+making a logging system for everything. Get-FileShare, errors, differences, etc. Go through this in depth later
 more cis baselining get every single group policy there is lmfao (go through all there is a lot)
 netstat more more more
   find out which pid's are bad
