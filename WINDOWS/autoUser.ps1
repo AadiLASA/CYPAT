@@ -23,25 +23,26 @@ $currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Admin
 # Add missing authorized users
 $missingUsers = $authorizedUsers | Where-Object { $currentUserAccounts -notcontains $_ }
 foreach ($user in $missingUsers) {
-    New-LocalUser -Name $user -NoPassword -AccountNeverExpires -UserMayNotChangePassword -PasswordNeverExpires
+    # Note: Creating user without password; may need to add password creation logic
+    New-LocalUser -Name $user -AccountNeverExpires -PasswordNeverExpires -ErrorAction SilentlyContinue
 }
 
 # Remove unauthorized users
 $unauthorizedUsers = $currentUserAccounts | Where-Object { $authorizedUsers -notcontains $_ -and $authorizedAdmins -notcontains $_ }
 foreach ($user in $unauthorizedUsers) {
-    Remove-LocalUser -Name $user
+    Remove-LocalUser -Name $user -ErrorAction SilentlyContinue
 }
 
 # Ensure only authorized admins are in the Administrators group
 $currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
 $unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
 foreach ($admin in $unauthorizedAdmins) {
-    Remove-LocalGroupMember -Group "Administrators" -Member $admin
+    Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
 }
 
 $missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
 foreach ($admin in $missingAdmins) {
-    Add-LocalGroupMember -Group "Administrators" -Member $admin
+    Add-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
 }
 
 # Output completion message
