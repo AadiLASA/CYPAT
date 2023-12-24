@@ -26,3 +26,7 @@ secure various ports. learn how to use netstat -ano or other netstat tools to fi
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
 learn about appsec for common tools and browsers
 ORGANIZE THE FOLDER SKULL
+
+
+MOST IMPORTANT ULTRA:
+make sure scripts are all working well out the box from single runnable powershell file. I should just make directory, passwords txt, different logs, and I should be done
