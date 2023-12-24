@@ -1,5 +1,3 @@
-set-executionpolicy unrestricted
-
 # Important Notice
 
 **Disclaimer:** The two Windows scripts provided here are for inspirational use only and are the intellectual property of the Man Pasand Supermarket Team. Unauthorized use or distribution of these scripts is strictly prohibited.
@@ -10,4 +8,8 @@ We kindly request that you refrain from using these scripts for any purpose, as 
 
 Thank you for your understanding and cooperation.
 
-
+### Before USE
+set-executionpolicy unrestricted -force
+Make directory on desktop
+Create passwords.txt file with spaces removed, passwrods removed, and (you) removed.
+Create log.txt file
