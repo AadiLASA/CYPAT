@@ -32,6 +32,7 @@ personally configure some hidden files deep in user directories and see if sus f
 remember the shares. only three allowed shares are on the checklist. also look for drive sharing
 with new script make sure to re-paste in registries you added to the scriptAutoRun (reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d 0 /f)
 Are there any ports I should straight up block for connections? How do I harden my windows 10 machine network wise
+ash chat gpt 4 : Give me two registry one liners to disable the "Allow Remote Assistance connections to this computer" and to keep the remote desktop on "don't allow remote connections to this computer"
 
 
 
