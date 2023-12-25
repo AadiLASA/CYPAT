@@ -10,7 +10,6 @@ review firewall rules
 
 
 TODO FOR SEMIS:
-ensure you have something for action center because wtf is that?
 possible security mistake not going changing admin and guest usernames
 go through stuff from: https://github.com/Adamapb/WIndows_Stuff/blob/main/winscript.ps1
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
