@@ -14,7 +14,7 @@ GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE 
 more cis baselining get every single group policy there is lmfao (go through all there is a lot)
 netstat more more more
   find out which pid's are bad
-services : black viper is meh revisit (CIS service script is implemented but might need some fine tuning later)
+ABOUT SERVICES : FIRST RUN SERVICES.PS1 AND THEN SERVCSV.PS1. This way the CIS is applied afterwards. Comepare with differences from the searchthrough.ps1 script.
 get config files for appsec for common critical applications
 secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
