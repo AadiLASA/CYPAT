@@ -37,6 +37,7 @@ once everything is done start actually learning how things work so you can tepuv
 go through aperture for advice
 personally configure some hidden files deep in user directories and see if sus finder can get it
 remember the shares. only three allowed shares are on the checklist. also look for drive sharing
+with new script make sure to re-paste in registries you added to the scriptAutoRun (reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d 0 /f)
 
 
 
