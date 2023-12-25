@@ -11,7 +11,6 @@ review firewall rules
 TODO FOR SEMIS:
 go through stuff from: https://github.com/Adamapb/WIndows_Stuff/blob/main/winscript.ps1
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
-making a logging system for everything. Get-FileShare, errors, differences, etc. Go through this in depth later
 more cis baselining get every single group policy there is lmfao (go through all there is a lot)
 netstat more more more
   find out which pid's are bad
