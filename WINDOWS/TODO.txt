@@ -26,7 +26,7 @@ update checklist with more indepth step by step.
   optimize it for speed
   do runs in different VMs
   have fallback for after completion
-check for cross user directory permissions
+make sure rdp stuff is there and in checklist
 
 
 literally go through all cis for the rest of group policy for obscure settings
