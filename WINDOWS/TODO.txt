@@ -38,6 +38,7 @@ look at insecure drivers
 look at insecure DLLs
 ask chatgpt for a list of good services that should be running (take inspiration from other script)
 make user script parse straight from read me.
+stop being a bitch and set up the crit services
 
 
 MOST IMPORTANT ULTRA:
