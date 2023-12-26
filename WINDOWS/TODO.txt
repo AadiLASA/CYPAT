@@ -6,6 +6,7 @@ understand permissions and privelege mangament (how to promote for uninstalls li
 how to find instances of elevated priveleges or file shares
 review firewall rules
 
+hurry tf up and complete these
 
 
 TODO FOR SEMIS:
@@ -40,6 +41,7 @@ ask chatgpt for a list of good services that should be running (take inspiration
 make user script parse straight from read me.
 stop being a bitch and set up the crit services
 actually look into stigs
+man tf up and do all the images once these are all done.
 
 
 MOST IMPORTANT ULTRA:
