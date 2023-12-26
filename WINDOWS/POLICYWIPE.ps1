@@ -1,23 +1,25 @@
 # PowerShell Script to Reset Local Group Policy to Default
 
+# Check for administrative privileges
 if (-NOT ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator"))
 {
     Write-Warning "Please run this script as an Administrator!"
-    break
+    Exit
 }
 
+# Reset security settings to default
+secedit /configure /db reset.sdb /cfg "$env:windir\inf\defltbase.inf" /overwrite /areas SECURITYPOLICY
 
-Stop-Service -Name "gpsvc" -Force
-
-$policyPaths = @("$env:windir\System32\GroupPolicy", "$env:windir\System32\GroupPolicyUsers")
-foreach ($path in $policyPaths) {
+# Delete registry.pol files
+$registryPolPaths = @("$env:windir\System32\GroupPolicy\Machine\registry.pol", "$env:windir\System32\GroupPolicy\User\registry.pol")
+foreach ($path in $registryPolPaths) {
     if (Test-Path $path) {
-        Remove-Item -Path $path -Recurse -Force
+        Remove-Item -Path $path -Force
     }
 }
 
+# Refresh the policy
 gpupdate /force
 
-Start-Service -Name "gpsvc"
-
-Write-Host "Group Policy has been reset to default." -ForegroundColor Green
+# Output completion message
+Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Green
