@@ -1,7 +1,7 @@
 # PowerShell Script for Security Logging
-
+mkdir "C:\Logs"
 # Define log file path
-$LogFilePath = "C:\SecurityAuditLog.txt"
+$LogFilePath = "C:\Logs\SecurityAuditLog.txt"
 
 # Function to append text to the log file
 function Write-ToLog {
@@ -62,6 +62,27 @@ foreach ($profile in $userProfiles) {
         }
     }
 }
+
+# PowerShell Script to Log ACLs of User Directories
+
+# Path to the Users directory
+$usersDir = "C:\Users"
+
+# Output file
+$outputFile = "C:\Logs\USERACLS.txt"
+
+# Get all user directories
+$userDirectories = Get-ChildItem -Path $usersDir -Directory
+
+# Write ACLs to the output file
+foreach ($dir in $userDirectories) {
+    $acl = Get-Acl -Path $dir.FullName
+    $acl | Out-File -FilePath $outputFile -Append
+    Add-Content -Path $outputFile -Value "`n" # Add a new line for separation
+}
+
+Write-Host "ACLs logged to $outputFile"
+
 
 
 # End of Script
