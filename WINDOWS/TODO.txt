@@ -37,6 +37,7 @@ test 20H2 LGPO
 look at insecure drivers
 look at insecure DLLs
 ask chatgpt for a list of good services that should be running (take inspiration from other script)
+make user script parse straight from read me.
 
 
 MOST IMPORTANT ULTRA:
@@ -49,4 +50,5 @@ MISSING FROM APERTURE:
 24, 28, 29, 30, 31, 33, 34, 35, 36, 52, 53, 61(get from searchthrough script), 62(get from script), 63, 64, 65, 66-73, 83-91
 GO THROUGH EVERYTHING WITH CHAT GPT
 CHAT GPT'd/REMEDIATED ONES:
+24(cis), 
 
