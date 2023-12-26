@@ -33,10 +33,17 @@ remember the shares. only three allowed shares are on the checklist.
 with new script make sure to re-paste in registries you added to the scriptAutoRun (reg add "HKCU\Software\Policies\Microsoft\Windows\Explorer" /v "DisableNotificationCenter" /t REG_DWORD /d 0 /f)
 Are there any ports I should straight up block for connections? How do I harden my windows 10 machine network wise
 ash chat gpt 4 : Give me two registry one liners to disable the "Allow Remote Assistance connections to this computer" and to keep the remote desktop on "don't allow remote connections to this computer"
-
+test 20H2 LGPO
+look at insecure drivers
+look at insecure DLLs
+ask chatgpt for a list of good services that should be running (take inspiration from other script)
 
 
 MOST IMPORTANT ULTRA:
 make sure scripts are all working well out the box from single runnable powershell file. I should just make directory, passwords txt, different logs, and I should be done
 Make it so you can run one thing and every script gets set up
 go through GPT fixes onc checklist and ask everything about windows to learn how everything works
+
+
+MISSING FROM APERTURE:
+24, 28, 29, 30, 31, 33, 34, 35, 36, 52, 53, 61(get from searchthrough script), 62(get from script), 63, 64, 65, 
