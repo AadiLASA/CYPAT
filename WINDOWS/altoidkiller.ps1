@@ -26,5 +26,5 @@ Start-Sleep -seconds 5
 & 'services.ps1'
 & 'servcsv.ps1'
 
-Write-Host "SCRIPTS COMPLETED GG's"
+Write-Host "SCRIPTS COMPLETED GG's. RESTART TO APPLY ALL CHANGES"
 Start-Sleep -seconds 5
