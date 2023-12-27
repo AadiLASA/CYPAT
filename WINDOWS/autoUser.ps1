@@ -56,7 +56,7 @@ Write-Host "User accounts have been updated according to the authorized list."
 
 Write-Host "Now Changing Passwords:"
 
-$Password = ConvertTo-SecureString "aPASSWORD1234!" -AsPlainText -Force
+$Password = ConvertTo-SecureString "aPASSWORD12345!" -AsPlainText -Force
 $UserAccounts = Get-LocalUser
 
 foreach ($UserAccount in $UserAccounts) {
