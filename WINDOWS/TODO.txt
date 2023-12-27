@@ -9,6 +9,7 @@ hurry tf up and complete these
 
 TODO FOR SEMIS:
 move the appmgmt order so it's, uninstall, update, install
+fix errors with scriptAutoRun and script as a whole. get rid of the r to confirm bs
 apply the other registry changes
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
 netstat more more more
