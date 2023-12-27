@@ -1,9 +1,7 @@
 my immediate todo:
 
 
-look at the shell service scripts
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
-how to find instances of elevated priveleges or file shares
 review firewall rules
 
 hurry tf up and complete these
