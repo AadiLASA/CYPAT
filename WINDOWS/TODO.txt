@@ -9,7 +9,7 @@ hurry tf up and complete these
 
 TODO FOR SEMIS:
 learn how the windows file system actually works
-perhaps start baselining?
+perhaps start baselining? --file permissions
 make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
   don't forget to relay them to ved/ryan
 wtf the audit poplicies aren't in the gpo. manually do the setaudit policy thing from the OG policy script
