@@ -32,13 +32,7 @@ make user script parse straight from read me.
 stop being a bitch and set up the crit services
 actually look into stigs
 man tf up and do all the images once these are all done.
-compmgmt.exe
-msinfo32
 
-MOST IMPORTANT ULTRA:
-make sure scripts are all working well out the box from single runnable powershell file. I should just make directory, passwords txt, different logs, and I should be done
-Make it so you can run one thing and every script gets set up
-go through GPT fixes onc checklist and ask everything about windows to learn how everything works
 
 
 MISSING FROM APERTURE:
