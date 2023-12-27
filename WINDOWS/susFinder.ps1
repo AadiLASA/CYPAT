@@ -6,7 +6,7 @@ $extensions = @("aac", "ac3", "avi", "aiff", "bat", "bmp", "exe", "flac", "gif",
 $tools = @("Cain", "nmap", "keylogger", "Armitage", "Wireshark", "Metasploit", "netcat")
 
 # Define the path to the log file
-$logFile = "log.txt"
+$logFile = "C:\Logs\FileLog.txt"
 
 # Get all user directories under C:\Users
 $userDirectories = Get-ChildItem -Path "C:\Users" -Directory
