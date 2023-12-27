@@ -8,6 +8,7 @@ hurry tf up and complete these
 
 
 TODO FOR SEMIS:
+maybe get users from readme with wget?
 learn how the windows file system actually works
 perhaps start baselining? --file permissions
 make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
