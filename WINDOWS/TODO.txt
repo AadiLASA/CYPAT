@@ -8,7 +8,7 @@ hurry tf up and complete these
 
 
 TODO FOR SEMIS:
-find auto-read me user
+disable and rename all default accounts (guest, admin, etc..)
 go through stuff from: https://github.com/Adamapb/WIndows_Stuff/blob/main/winscript.ps1
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
 netstat more more more
