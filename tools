@@ -4,16 +4,18 @@ malware bytes(click the start download thing):  https://www.malwarebytes.com/mwb
 SYSINTERNALS AUTORUN: https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
 UPDATES FOR APPS:   https://ninite.com/
 hacks da processes:  https://processhacker.sourceforge.io/ 
-EVENT VIEWER AUDIT'S : https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx
 malware remediation:  https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool/releases/tag/3.3        
 uninstaller:  https://sourceforge.net/projects/bulk-crap-uninstaller/      
 EVENT VIEWER AUDIT ID: https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/
+USEFUL WINDOW UTIL: compmgmt.exe
+STARTUPAPPS : msinfo32
 
 
 checklist: https://docs.google.com/document/d/1JYK_aGYpbMcFTaUmVvTLJ8yYMZoORQuWGjtB2oLto8Q/edit?usp=sharing
 keys: https://docs.google.com/document/d/11-Zq6YDpQw8e5r2R0wLPLesxe6z78-7R_tstMnZUVBQ/edit?usp=sharing
 
 malware analysis book : http://repo.darmajaya.ac.id/5578/1/Troubleshooting%20with%20the%20Windows%20Sysinternals%20Tools%20%28%20PDFDrive%20%29.pdf
+windows internals book : https://empyreal96.github.io/nt-info-depot/Windows-Internals-PDFs/Windows%20System%20Internals%207e%20Part%201.pdf
 
 ==FORENSICS==
 forensics helper:  https://gchq.github.io/CyberChef/#recipe=From_Hex('None')&input=NTI3NTZlNmU2OTZlNjcyMDU1NzAyMDU0Njg2MTc0MjA0ODY5NmM2Yw  

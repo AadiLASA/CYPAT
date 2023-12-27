@@ -1,0 +1,263 @@
+POWERSHELL
+        Press Win + R, type gpedit.msc, and press Enter.
+        Navigate to User Configuration -> Administrative Templates -> System.
+        Find and double-click on Don't run specified Windows applications.
+        Set it to Disabled or Not Configured.
+        Navigate to Computer Configuration -> Administrative Templates -> Windows Components -> Windows PowerShell.
+        Ensure Turn on Script Execution is set to Enabled and configure the execution policy as needed (e.g., Allow all scripts).
+
+MMC
+        Still in Group Policy Editor, navigate to User Configuration -> Administrative Templates -> System.
+        Find settings related to the specific tools you want to enable (like MMC restrictions) and set them to Disabled or Not Configured.
+
+
+
+MALICIOUS AUTOSTART AFFECTING Group Policy or malicious autostarts in general
+
+1. Check Startup Programs
+
+    Use the Task Manager (Ctrl + Shift + Esc) to review the list of startup programs. Look for any unfamiliar or suspicious applications that might be related to the reapplication of Group Policy.
+    You can disable any suspicious startup items from here.
+
+2. Examine Scheduled Tasks
+
+    Open Task Scheduler (taskschd.msc) and check for any tasks that are set to run at logon or at regular intervals that might be responsible for applying Group Policy settings.
+    Look for tasks with actions involving scripting tools or policy-related commands.
+
+3. Inspect Scripts in Common Startup Locations
+
+    Check common script locations such as C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp or the Startup folder in the user's profile.
+    Also, check the registry keys for startup scripts: HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run and HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run.
+
+4. Use System Configuration (msconfig)
+
+    Run msconfig to access System Configuration. Check the Services and Startup tabs for any unusual entries.
+
+5. Review Group Policy Scripts
+
+    If you have access, check Group Policy scripts that might be applied. Look under Computer Configuration or User Configuration in the Group Policy Editor (gpedit.msc) for any startup scripts.
+
+6. Conduct a Malware Scan
+
+    Perform a thorough scan of your system using a reliable antivirus or anti-malware program. Malicious software could be responsible for reapplying these policies.
+
+7. Monitor with Sysinternals Tools
+
+    Use tools from the Sysinternals Suite like Process Explorer or Autoruns to get a more detailed view of what's running on your system and what's configured to run at startup.
+
+8. Use Event Viewer
+
+    The Event Viewer (eventvwr.msc) can provide logs that might indicate what processes or scripts are being executed at logon.
+
+To investigate potential reapplication of Group Policy settings or other suspicious activities, certain logs within the Event Viewer can be particularly helpful. Here are the relevant ones:
+Event Viewer Logs to Check
+
+    Security Logs
+        These logs can provide information about login attempts, changes to security settings, and other security-related activities. Look for any unusual patterns or entries around the times you suspect Group Policy settings were modified.
+
+    System Logs
+        System logs contain events logged by the operating system components. These can include system errors, warnings, and informational events, some of which may be related to Group Policy changes.
+
+    Application Logs
+        These logs hold events logged by applications. If a specific application is responsible for modifying Group Policy settings, you might find relevant entries here.
+
+    Group Policy Operational Logs
+        Located under "Applications and Services Logs" -> "Microsoft" -> "Windows" -> "GroupPolicy" -> "Operational". This log specifically tracks Group Policy processing and can be very useful in identifying when and how Group Policy was applied or refreshed.
+
+Event IDs to Look For
+
+    Event ID 4688: A new process has been created (can help track execution of scripts or programs).
+    Event ID 4738: A user account was changed (might indicate changes in user privileges or settings).
+    Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
+    Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
+
+
+
+
+
+COMMONLY TARGETED REGISTRY KEYS
+
+
+In the context of cyber attacks on Windows systems, certain registry keys are often targeted because they control critical aspects of the system's behavior, security, and user settings. Attackers may modify these keys to gain persistence, elevate privileges, disable security mechanisms, or for other malicious purposes. Here are some commonly targeted registry keys, what they control, and what their typical or secure values should be:
+1. AutoRun and AutoStart Locations
+
+    Targeted Keys:
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+    Controls: Programs that automatically start when a user logs in.
+    Secure Value: Only legitimate and necessary applications should be listed. Be wary of unfamiliar or suspicious entries.
+
+2. SafeBoot Configuration
+
+    Targeted Key: HKEY_LOCAL_MACHINE\System\CurrentControlSet\Control\SafeBoot
+    Controls: Configuration for Safe Mode boot.
+    Secure Value: Modifications here can be suspicious, as malware might attempt to disable certain services in Safe Mode.
+
+3. UserInit Key
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon\Userinit
+    Controls: Specifies programs that are run when a user logs on to the system.
+    Secure Value: Default value is usually C:\Windows\system32\userinit.exe,. Additional entries could be indicative of tampering.
+
+4. AppInit_DLLs
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows\AppInit_DLLs
+    Controls: Lists DLLs to be loaded at system startup.
+    Secure Value: Should be empty or contain only known legitimate DLLs. Malware often uses this key to load malicious DLLs.
+
+5. EnabledDebuggers (Image File Execution Options)
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options
+    Controls: Debugger settings for executables.
+    Secure Value: Malware may set debuggers for certain processes (like antivirus programs) to interfere with their execution. Be cautious of unexpected debuggers.
+
+6. Shell and Explorer Extensions
+
+    Targeted Keys:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Shell Extensions
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\FileExts
+    Controls: Configurations for shell and file explorer behavior.
+    Secure Value: Look out for unknown or untrusted extensions.
+
+7. Security Providers
+
+    Targeted Key: HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\SecurityProviders\SecurityProviders
+    Controls: Lists security provider DLLs.
+    Secure Value: Should typically include credssp.dll, wdigest.dll, schannel.dll, msapsspc.dll. Additional or replaced DLLs might indicate tampering.
+
+
+Windows Defender and Automatic Updates are critical components of Windows 10 security, and their configurations can be managed through specific registry keys. However, it's important to handle these settings with care, as improper modifications can compromise system security. Below are the key registry settings for enabling Windows Defender and Automatic Updates, along with their recommended values:
+Windows Defender
+
+    DisableAntiSpyware and DisableAntiVirus (Windows Defender)
+        Registry Key Path:
+            HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender
+        Values:
+            DisableAntiSpyware: Should be set to 0 (or the key should not exist) to ensure Windows Defender Antivirus is enabled.
+            DisableAntiVirus: Should also be 0 (or not exist) for Windows Defender Antivirus to remain active.
+        Note: These settings might be managed by Group Policy in some organizational environments, especially if an alternative antivirus solution is in use.
+
+Automatic Updates
+
+    AUOptions (Automatic Updates)
+        Registry Key Path:
+            HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU
+        Values:
+            AUOptions: Determines the configuration of Automatic Updates.
+                2 = Notify for download and notify for install.
+                3 = Auto download and notify for install.
+                4 = Auto download and schedule the install (recommended for most users).
+                5 = Allow local admin to choose the setting.
+        Note: Ensure the NoAutoUpdate key is set to 0 to enable automatic updates.
+
+
+
+
+
+
+
+To identify a process, scheduled task, or any other mechanism that might be continuously applying unwanted or malicious registry edits or group policy changes to your system, you can follow these steps:
+
+    Check Scheduled Tasks:
+        Use the Task Scheduler to review all scheduled tasks. Look for any tasks that seem unfamiliar or suspicious.
+        Command: Get-ScheduledTask | Where-Object {$_.State -eq 'Ready'} in PowerShell will list all active scheduled tasks.
+
+    Monitor Registry Changes:
+        Use a tool like Process Monitor from Sysinternals. This tool can log registry activities in real-time, helping you to identify which processes are making specific registry changes.
+        Set filters to monitor changes to the specific keys you're concerned about.
+
+    Review Group Policy Objects (GPOs):
+        Use the Group Policy Management Console (GPMC) to review all applied GPOs. Look for any unexpected settings or policies.
+        Check for any scripts or settings that may reapply the unwanted changes.
+
+    Check for Malware:
+        Run a thorough scan with your antivirus software to check for malware that might be making these changes.
+        Consider using additional malware scanning tools for a more comprehensive scan.
+
+    Analyze Running Processes:
+        Use Task Manager or a more detailed tool like Process Explorer (also from Sysinternals) to inspect currently running processes.
+        Look for unfamiliar or suspicious processes, especially those with high system privileges.
+
+    Review System and Application Logs:
+        Check the Windows Event Viewer for any logs related to system changes, errors, or security issues that might provide clues.
+        Look for events related to the registry, group policy, and scheduled tasks.
+
+    Use PowerShell to Query Services and Processes:
+        PowerShell scripts can be written to check for services or processes that might be responsible for these changes.
+        Example: Get-Service or Get-Process can be used to list and inspect services and processes.
+
+    Check for Persistent Mechanisms:
+        Look for any scripts or applications in startup folders and registry keys like Run and RunOnce.
+        Command: Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run and similar paths for both HKLM and HKCU.
+
+    Network Monitoring:
+        If you suspect the changes might be coming from a network source, use network monitoring tools to check for suspicious traffic.
+
+    Professional Help:
+        If you're still unable to identify the source, consider consulting with a cybersecurity professional or company. They can provide more advanced tools and expertise.
+
+Remember, dealing with potentially malicious activity requires caution. Ensure that you have adequate backups before attempting to remove or modify system components. If you're unsure about any steps, it's better to seek professional assistance.
+
+Should you need more detailed guidance on any of these steps or have additional queries, feel free to ask. Your cybersecurity is paramount!
+User
+give me a list of all of the common registry keys I can find bad stuff in related to what I was just asking and what I should look for. Also how do I do step 3? gpedit is the only group policy tool on my computer and I can't find an option to see applied GPOs
+GPT
+
+Certainly! Let's begin with a list of common registry keys where you might find suspicious or unwanted entries related to system behavior, startup items, services, and more. After that, I'll guide you through how to view applied Group Policy Objects (GPOs) without the Group Policy Management Console.
+Common Registry Keys to Check
+
+    Run and RunOnce Keys:
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+        HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+        Look For: Unfamiliar applications or scripts that start automatically with the system.
+
+    Services:
+        HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+        Look For: Unknown services, especially those with unusual names or descriptions.
+
+    Shell Overrides:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+        Look For: Modifications to the Shell and Userinit values that don't match the default Windows settings.
+
+    Scheduled Tasks:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree
+        Look For: Tasks that are unfamiliar or seem out of place.
+
+    Internet Explorer Extensions:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Extensions
+        Look For: Unwanted or suspicious browser extensions.
+
+    Loaded DLLs:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows
+        AppInit_DLLs value
+        Look For: Unusual or unknown DLLs that are loaded with every application.
+
+    Context Menu Handlers:
+        HKEY_CLASSES_ROOT\*\shellex\ContextMenuHandlers
+        Look For: Unusual entries that might indicate context menu manipulations.
+
+    Explorer Add-ons:
+        HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Browser Helper Objects
+        Look For: Unfamiliar or unnecessary browser helper objects.
+
+    Startup Folders (not registry but important to check):
+        %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
+        %PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup
+        Look For: Files that run on startup.
+
+Viewing Applied GPOs
+
+Since you don't have the Group Policy Management Console, you can use the Resultant Set of Policy (RSoP) tool or the command line to view applied policies:
+
+    Using RSoP (GUI Tool):
+        Press Win + R, type rsop.msc, and press Enter.
+        This tool simulates the policy settings applied to your computer and user account.
+
+    Using Command Line:
+        Open Command Prompt or PowerShell with administrative privileges.
+        Run the command: gpresult /H GPReport.html
+        This command generates a report in HTML format which you can view in your web browser. It shows all the GPOs applied to your computer and user account.
+
+Remember to exercise caution when modifying registry settings, and ensure you have backups of your system and important data. If you find suspicious entries, it's advisable to research them further before taking action, as some legitimate software might use these keys for normal operations.

@@ -1,26 +1,43 @@
 my immediate todo:
 
 
-look at the shell service scripts
-look at v's scripts
-combine scripts, add wiper for existing policy
-browser configs so no broswer vulns
 understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
-how to find instances of elevated priveleges or file shares
-fond backdoors with netstat
-review mmc and browser settings
 review firewall rules
 
+hurry tf up and complete these
 
 
-TODO FOR SEMIS
-fix user auditing script asap
-more cis baselining get every single group policy there is lmfao
+TODO FOR SEMIS:
+find auto-read me user
+go through stuff from: https://github.com/Adamapb/WIndows_Stuff/blob/main/winscript.ps1
+GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
 netstat more more more
   find out which pid's are bad
-services : config blackviper's settings + reverse setting strategy 
-find out about prohib files
+ABOUT SERVICES : FIRST RUN SERVICES.PS1 AND THEN SERVCSV.PS1. This way the CIS is applied afterwards. Comepare with differences from the searchthrough.ps1 script.
 get config files for appsec for common critical applications
-(IMPORTANT) learn the important audits for event viewer [what is the IDs for make file, change audits, change all the policies, change important settings, change firewall rules, etc.
 secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
+PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
+learn about appsec for common tools
+ORGANIZE THE FOLDER SKULL
+have fallback for after completion
+make sure rdp stuff is there and in checklist
+once everything is done start actually learning how things work so you can tepuvlefix service or malware issues you’re gonna destroy vedanth and gideon
+remember the shares. only three allowed shares are on the checklist.
+Are there any ports I should straight up block for connections? How do I harden my windows 10 machine network wise
+look at insecure drivers
+look at insecure DLLs
+ask chatgpt for a list of good services that should be running (take inspiration from other script)
+make user script parse straight from read me.
+stop being a bitch and set up the crit services
+actually look into stigs
+man tf up and do all the images once these are all done.
+
+
+
+MISSING FROM APERTURE:
+24, 28, 29, 30, 31, 33, 34, 35, 36, 52, 53, 61(get from searchthrough script), 62(get from script), 63, 64, 65, 66-73, 83-91
+GO THROUGH EVERYTHING WITH CHAT GPT
+CHAT GPT'd/REMEDIATED ONES:
+24(cis), 
+
