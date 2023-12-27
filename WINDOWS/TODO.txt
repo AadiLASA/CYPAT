@@ -8,6 +8,7 @@ hurry tf up and complete these
 
 
 TODO FOR SEMIS:
+apply the other registry changes
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
 netstat more more more
   find out which pid's are bad
