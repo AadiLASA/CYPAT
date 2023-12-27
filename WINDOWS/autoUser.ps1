@@ -68,3 +68,27 @@ foreach ($UserAccount in $UserAccounts) {
     }
 }
 
+
+
+
+# Define new names for the accounts
+$newAdminName = "NewAdminName"
+$newGuestName = "NewGuestName"
+
+# Rename and disable the Administrator account
+$adminAccount = Get-LocalUser -Name "Administrator" -ErrorAction SilentlyContinue
+if ($null -ne $adminAccount) {
+    Rename-LocalUser -Name "Administrator" -NewName $newAdminName
+    Disable-LocalUser -Name $newAdminName
+}
+
+# Rename and disable the Guest account
+$guestAccount = Get-LocalUser -Name "Guest" -ErrorAction SilentlyContinue
+if ($null -ne $guestAccount) {
+    Rename-LocalUser -Name "Guest" -NewName $newGuestName
+    Disable-LocalUser -Name $newGuestName
+}
+
+Write-Host "Default accounts have been renamed and disabled."
+
+
