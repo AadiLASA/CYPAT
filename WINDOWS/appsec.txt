@@ -21,7 +21,70 @@ specifically mentioned for windows:
 IIS 
 SMB
 SMTP
-FTP (FileZilla)
+
+
+
+FTP (FileZilla)                                                                                                                                                                            FILEZILLA
+  Settings located at C:\ProgramData\filezilla-server\settings.xml
+  Logs also nearby found with Everything voidtools
+  Stop-Service filezilla-server while changing settings
+  Start-Service filezilla-server afterwards
+  Restart-Service filezilla-server to ensure settings were applied (also check in the app lmao)
+
+Log File Size Limitation:
+Purpose: To prevent log files from becoming too large, which can consume excessive disk space and potentially affect server performance.
+Code Segment:
+<logger>
+    <max_file_size>104857600</max_file_size> <!-- 100 MB per log file -->
+</logger>
+
+Autoban Settings for Failed Login Attempts:
+Purpose: To protect against brute-force attacks by banning IP addresses after multiple failed login attempts.
+Code Segment:
+<autobanner>
+    <ban_duration>3600000</ban_duration> <!-- 1 hour ban duration -->
+    <login_failure_time_window>300000</login_failure_time_window> <!-- 5 minutes time window -->
+    <login_failure_count>5</login_failure_count> <!-- 5 failed attempts trigger ban -->
+</autobanner>
+
+Reduced Login and Activity Timeouts:
+Purpose: To minimize the risk of idle connections being exploited and to reduce the window of opportunity for unauthorized access.
+Code Segment:
+<timeouts>
+    <login_timeout>30000</login_timeout> <!-- 30 seconds login timeout -->
+    <activity_timeout>600000</activity_timeout> <!-- 10 minutes activity timeout -->
+</timeouts>
+
+TLS Configuration for Secure Connections:
+Purpose: To ensure all data transmission is encrypted, protecting against eavesdropping and data interception.
+Code Segment:
+<listener>
+    <tls_mode>2</tls_mode> <!-- TLS required -->
+</listener>
+<session>
+    <tls index="2" min_protocol_version="2">
+        <certificate_file>C:\path\to\your\certificate.crt</certificate_file>
+        <private_key_file>C:\path\to\your\private.key</private_key_file>
+    </tls>
+</session>
+
+PASV Mode Port Range Configuration:
+Purpose: To limit the range of ports used for passive connections, aiding in firewall configuration and minimizing exposure.
+Code Segment:
+<pasv>
+    <min_port>50000</min_port>
+    <max_port>50100</max_port>
+</pasv>
+
+Update Checker Configuration:
+Purpose: To ensure the server regularly checks for and applies updates, maintaining security with the latest patches.
+Code Segment:
+<update_checker>
+    <frequency>604800000</frequency> <!-- Weekly update checks -->
+</update_checker>
+
+
+
 DNS
 RDP
 Active Directory (Domain Controller)
