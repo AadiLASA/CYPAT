@@ -14,3 +14,14 @@ File Sharing: FTP (vsFTPd, Filezilla, etc.), SMB (Samba, Windows SMB)
 CMS: WordPress, Joomla
 VPN: OpenVPN
 Identity Management: Active Directory Domain Services
+
+
+specifically mentioned for windows:
+
+IIS 
+SMB
+SMTP
+FTP (FileZilla)
+DNS
+RDP
+Active Directory (Domain Controller)
