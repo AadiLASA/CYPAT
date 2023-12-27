@@ -12,6 +12,7 @@ learn how the windows file system actually works
 perhaps start baselining? --file permissions
 make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
   don't forget to relay them to ved/ryan
+  find out how to develop a method that would consistently flag all manually installed packages on the system.
 wtf the audit poplicies aren't in the gpo. manually do the setaudit policy thing from the OG policy script
 move the appmgmt order so it's, uninstall, update, install
 fix errors with scriptAutoRun and script as a whole. get rid of the r to confirm bs
