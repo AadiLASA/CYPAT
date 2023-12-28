@@ -25,7 +25,7 @@ gpupdate /force
 Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Green
 
 
-auditpol /set /category:"Account Logon" /success:enable 
+        auditpol /set /category:"Account Logon" /success:enable 
         auditpol /set /category:"Account Logon" /failure:enable
         auditpol /set /category:"Account Management" /success:enable
         auditpol /set /category:"Account Management" /failure:enable
