@@ -8,6 +8,7 @@ hurry tf up and complete these
 
 
 TODO FOR SEMIS:
+FIX THE USER AUDITITING WTF AND MAKE SURE TO REMOVE CHOCO FROM SCRIPT (JUST DO IT AFTER)
 (not important)maybe get users from readme with wget? or curl
 configure service on/off tool. remember what you learned about ftp
 go into depth about net firewalls?
