@@ -1,10 +1,12 @@
 # Define a list of services with their desired state from the CIS benchmark images
- #TlntSvr = telnet
-    #Msftpsvc = microsoft ftp 
-    #ftpsvc = ftp
-    #Smtpsvc = SMTP service
-    #Termservice = remote desktop
-    #LanmanServer = SMB
+    #TlntSvr = telnet  -disabled
+    #Msftpsvc = microsoft ftp -disabled
+    #ftpsvc = ftp -disabled
+    #Smtpsvc = SMTP service -disabled
+    #Termservice = remote desktop -disabled
+    #LanmanServer = SMB -disabled
+    #Windows Firewall = mpssvc - enabled
+    #Windows Update Service = WUAUSERV -enabled
 
 $serviceConfigurations = @{
     "BTAGService" = "Disabled"
