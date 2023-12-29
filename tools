@@ -1,5 +1,9 @@
 ==WINDOWS10==
 PSEXEC (BYPASS ANY PERMISSION LOCK[./PsExec.exe -i -s powershell.exe])  : https://learn.microsoft.com/en-us/sysinternals/downloads/psexec
+ ./PsExec.exe -i -s cmd.exe
+  takeown /f "C:\Windows\System32\OpenSSH" /r /d y
+  icacls "C:\Windows\System32\OpenSSH" /grant rio:F /t
+
 file extension finder:  https://www.voidtools.com/    
 malware bytes(click the start download thing):  https://www.malwarebytes.com/mwb-download/thankyou
 SYSINTERNALS AUTORUN: https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
