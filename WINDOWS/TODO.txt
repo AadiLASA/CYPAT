@@ -63,24 +63,3 @@ FOR WINDOWS AUTOMATIC UPDATES:
     reg add "HKLM\SYSTEM\Internet Communication Management\Internet Communication" /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
     reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
 
-
-
-
-
-
-
-
- It is company policy to use only Windows 10 LTSB 2019 on this computer. It is also company policy to use only the latest, official, stable Windows 10 LTSB 2019 packages available for required software and services on this computer. Management has decided that the default web browser for all users on this computer should be the latest stable version of Firefox.
-
-Critical software needed for crew member duties includes Firefox, FileZilla Client, Notepad++, and IfranView. All of these programs should be up-to-date and secured.
-
-Management has decided that BitLocker should be used to provide full disk encryption on this computer. This should provide an extra measure of security if malicious actors were to gain physical access to this computer. This computer does not have a TPM, however, management still wants full disk encryption to be enabled.
-
-SSH is the authorized remote access protocol for this device, and as such needs to remain enabled. After recent suspicious logs, a new security measure for SSH is needed; SSH needs to be changed to operate on port 223.
-
-This computer is currently being used as an SMB server for sharing business-critical files such as documents about the next heist. No Hostage information should be kept here!
-
-Critical Services:
-
-    OpenSSH Server (sshd)
-    File Sharing (smb)
