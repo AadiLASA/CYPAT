@@ -9,7 +9,7 @@ hurry tf up and complete these
 
 TODO FOR SEMIS:
 FIX THE USER AUDITITING WTF AND MAKE SURE TO REMOVE CHOCO FROM SCRIPT (JUST DO IT AFTER)
-(not important)maybe get users from readme with wget? or curl
+retry heist image -> check if dlls actually broken. try actually doing in order so fixing malware stuff before script and try fixing firewall with psexec. in startup registry key find out what the actual exec was.
 configure service on/off tool. remember what you learned about ftp
 go into depth about net firewalls?
   possbily blocking port 21 for ftp if not allowed or smth like that
