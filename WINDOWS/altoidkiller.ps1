@@ -20,6 +20,8 @@ Start-Sleep -seconds 5
 & './scriptAutoRun.ps1'
 #Execute LGPO
 ./LGPO.exe /g '../{AC9CB38C-EE4E-46BB-93EC-C655C5CF3138}'
+#Audit Policies
+& './AUDITPOL.ps1'
 #Chrome Appsec
 & './chromesecurity.ps1'
 #Service Config
