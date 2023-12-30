@@ -94,78 +94,105 @@
 
 
 # Define the path to the users.txt file
-$usersFilePath = "users.txt"
+$filePath = "C:\Path\To\users.txt"
 
-# Define the whitelist of users to ignore
-$whitelist = @("Administrator", "Guest", "DefaultAccount", "WDAGUtilityAccount")
+# Define the default whitelist of Windows 10 accounts
+$whitelist = @("Administrator", "DefaultAccount", "Guest", "WDAGUtilityAccount")
 
-# Read the content of the users.txt file
-$usersFileContent = Get-Content $usersFilePath
-
-# Initialize variables
-$authorizedAdmins = @()
-$authorizedUsers = @()
-$isInAdminSection = $false
-
-# Parse the file
-foreach ($line in $usersFileContent) {
-    if ($line -eq "Authorized Administrators:") {
-        $isInAdminSection = $true
-        continue
-    } elseif ($line -eq "Authorized Users:") {
-        $isInAdminSection = $false
-        continue
-    }
-
-    if ($isInAdminSection) {
-        $authorizedAdmins += $line
-    } else {
-        $authorizedUsers += $line
-    }
-}
-
-# Function to manage user account
-function Manage-UserAccount {
+# Function to process the file and update users and admins
+function Process-UsersFile {
     param(
-        [string]$username,
-        [boolean]$isAdmin
+        [string]$filePath,
+        [string[]]$whitelist
     )
 
-    # Check if the user is in the whitelist
-    if ($username -in $whitelist) {
-        Write-Host "User $username is in the whitelist and will be ignored."
-        return
+    # Read the file
+    $fileContent = Get-Content -Path $filePath
+
+    # Initialize variables
+    $admins = @()
+    $users = @()
+    $isReadingAdmins = $false
+    $isReadingUsers = $false
+
+    # Parse the file content
+    foreach ($line in $fileContent) {
+        if ($line -eq "Authorized Administrators:") {
+            $isReadingAdmins = $true
+            $isReadingUsers = $false
+            continue
+        } elseif ($line -eq "Authorized Users:") {
+            $isReadingUsers = $true
+            $isReadingAdmins = $false
+            continue
+        }
+
+        if ($isReadingAdmins -and $line -ne "") {
+            $admins += $line
+        } elseif ($isReadingUsers -and $line -ne "") {
+            $users += $line
+        }
     }
 
-    # Check if the user exists
-    $userExists = Get-LocalUser -Name $username -ErrorAction SilentlyContinue
+    # Add to users the admins that are not already in the users list
+    $users += $admins | Where-Object { $users -notcontains $_ }
 
-    # If user does not exist, create the user
-    if (-not $userExists) {
-        Write-Host "Creating user $username..."
-        New-LocalUser -Name $username -NoPassword -AccountNeverExpires -UserMayNotChangePassword -PasswordNeverExpires
+    # Update Administrators and Users
+    Update-Administrators -Admins $admins -Whitelist $whitelist
+    Update-Users -Users $users -Whitelist $whitelist
+}
+
+# Function to add/remove administrators
+function Update-Administrators {
+    param(
+        [string[]]$Admins,
+        [string[]]$Whitelist
+    )
+
+    # Get all local administrators
+    $currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
+
+    # Remove unwanted administrators
+    foreach ($admin in $currentAdmins) {
+        if ($admin -notin $Admins -and $admin -notin $Whitelist) {
+            Remove-LocalGroupMember -Group "Administrators" -Member $admin
+        }
     }
 
-    # Add or remove user from Administrators group
-    $adminGroup = Get-LocalGroup -Name "Administrators"
-    if ($isAdmin) {
-        Add-LocalGroupMember -Group $adminGroup -Member $username -ErrorAction SilentlyContinue
-        Write-Host "Added $username to Administrators group."
-    } else {
-        Remove-LocalGroupMember -Group $adminGroup -Member $username -ErrorAction SilentlyContinue
-        Write-Host "Removed $username from Administrators group."
+    # Add missing administrators
+    foreach ($admin in $Admins) {
+        if ($admin -notin $currentAdmins) {
+            Add-LocalGroupMember -Group "Administrators" -Member $admin
+        }
     }
 }
 
-# Process each user
-foreach ($admin in $authorizedAdmins) {
-    Manage-UserAccount -username $admin -isAdmin $true
+# Function to add/remove users
+function Update-Users {
+    param(
+        [string[]]$Users,
+        [string[]]$Whitelist
+    )
+
+    # Get all local users
+    $currentUsers = Get-LocalUser | Select-Object -ExpandProperty Name
+
+    # Remove unwanted users
+    foreach ($user in $currentUsers) {
+        if ($user -notin $Users -and $user -notin $Whitelist) {
+            Remove-LocalUser -Name $user
+        }
+    }
+
+    # Add missing users
+    foreach ($user in $Users) {
+        if ($user -notin $currentUsers) {
+            New-LocalUser -Name $user -NoPassword
+        }
+    }
 }
 
-foreach ($user in $authorizedUsers) {
-    Manage-UserAccount -username $user -isAdmin $false
-}
-
-Write-Host "User account management completed."
+# Process the file
+Process-UsersFile -filePath $filePath -whitelist $whitelist
 
 
