@@ -1,94 +1,171 @@
-# Define the path to the input file
+# # Define the path to the input file
+# $usersFilePath = "users.txt"
+
+# # Read the content of the file
+# $usersFileContent = Get-Content -Path $usersFilePath -ErrorAction SilentlyContinue
+
+# # Check if content was read successfully
+# if ($null -eq $usersFileContent) {
+#     Write-Error "The file at $usersFilePath could not be found or read."
+#     return
+# }
+
+# # Separate the content into administrators and users
+# $adminsStart = $usersFileContent.IndexOf("Authorized Administrators") + 1
+# $usersStart = $usersFileContent.IndexOf("Authorized Users") + 1
+
+# $authorizedAdmins = $usersFileContent[$adminsStart..($usersStart-3)].Trim() | Where-Object { $_ }
+# $authorizedUsers = $usersFileContent[$usersStart..($usersFileContent.Count-1)].Trim() | Where-Object { $_ }
+
+# # Get the list of current user accounts on the system, excluding default accounts
+# $currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" } | Select-Object -ExpandProperty Name
+
+# # Ensure only authorized admins are in the Administrators group
+# $currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
+# $unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
+# foreach ($admin in $unauthorizedAdmins) {
+#     Write-Host "Removing Admin Priv: $admin"
+#     Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
+# }
+
+
+# # Add missing authorized users
+# $missingUsers = $authorizedUsers | Where-Object { $currentUserAccounts -notcontains $_ }
+# foreach ($user in $missingUsers) {
+#     # Note: Creating user without password; may need to add password creation logic
+#     Write-Host "Adding: $user"
+#     New-LocalUser -Name $user -AccountNeverExpires -NoPassword -ErrorAction SilentlyContinue
+# }
+
+# # Remove unauthorized users
+# $unauthorizedUsers = $currentUserAccounts | Where-Object { $authorizedUsers -notcontains $_ -and $authorizedAdmins -notcontains $_ }
+# foreach ($user in $unauthorizedUsers) {
+#     Write-Host "Removing: $user"
+#     Remove-LocalUser -Name $user -ErrorAction SilentlyContinue
+# }
+
+
+# $missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
+# foreach ($admin in $missingAdmins) {
+#     Write-Host "Adding Admin: $admin"
+#     Add-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
+# }
+
+# # Output completion message
+# Write-Host "User accounts have been updated according to the authorized list."
+
+# Write-Host "Now Changing Passwords:"
+
+# $Password = ConvertTo-SecureString "aPASSWORD12345!" -AsPlainText -Force
+# $UserAccounts = Get-LocalUser
+
+# foreach ($UserAccount in $UserAccounts) {
+#     try {
+#         $UserAccount | Set-LocalUser -Password $Password
+#         Write-Output "Password for $($UserAccount.Name) has been changed."
+#     } catch {
+#         Write-Output "Failed to change password for $($UserAccount.Name)."
+#     }
+# }
+
+
+
+
+# # Define new names for the accounts
+# $newAdminName = "NewAdminName"
+# $newGuestName = "NewGuestName"
+
+# # Rename and disable the Administrator account
+# $adminAccount = Get-LocalUser -Name "Administrator" -ErrorAction SilentlyContinue
+# if ($null -ne $adminAccount) {
+#     Rename-LocalUser -Name "Administrator" -NewName $newAdminName
+#     Disable-LocalUser -Name $newAdminName
+# }
+
+# # Rename and disable the Guest account
+# $guestAccount = Get-LocalUser -Name "Guest" -ErrorAction SilentlyContinue
+# if ($null -ne $guestAccount) {
+#     Rename-LocalUser -Name "Guest" -NewName $newGuestName
+#     Disable-LocalUser -Name $newGuestName
+# }
+
+# Write-Host "Default accounts have been renamed and disabled."
+
+
+
+# Define the path to the users.txt file
 $usersFilePath = "users.txt"
 
-# Read the content of the file
-$usersFileContent = Get-Content -Path $usersFilePath -ErrorAction SilentlyContinue
+# Define the whitelist of users to ignore
+$whitelist = @("Administrator", "Guest", "DefaultAccount", "WDAGUtilityAccount")
 
-# Check if content was read successfully
-if ($null -eq $usersFileContent) {
-    Write-Error "The file at $usersFilePath could not be found or read."
-    return
-}
+# Read the content of the users.txt file
+$usersFileContent = Get-Content $usersFilePath
 
-# Separate the content into administrators and users
-$adminsStart = $usersFileContent.IndexOf("Authorized Administrators") + 1
-$usersStart = $usersFileContent.IndexOf("Authorized Users") + 1
+# Initialize variables
+$authorizedAdmins = @()
+$authorizedUsers = @()
+$isInAdminSection = $false
 
-$authorizedAdmins = $usersFileContent[$adminsStart..($usersStart-3)].Trim() | Where-Object { $_ }
-$authorizedUsers = $usersFileContent[$usersStart..($usersFileContent.Count-1)].Trim() | Where-Object { $_ }
+# Parse the file
+foreach ($line in $usersFileContent) {
+    if ($line -eq "Authorized Administrators:") {
+        $isInAdminSection = $true
+        continue
+    } elseif ($line -eq "Authorized Users:") {
+        $isInAdminSection = $false
+        continue
+    }
 
-# Get the list of current user accounts on the system, excluding default accounts
-$currentUserAccounts = Get-LocalUser | Where-Object { $_.Name -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" } | Select-Object -ExpandProperty Name
-
-# Ensure only authorized admins are in the Administrators group
-$currentAdmins = Get-LocalGroupMember -Group "Administrators" | Select-Object -ExpandProperty Name
-$unauthorizedAdmins = $currentAdmins | Where-Object { $authorizedAdmins -notcontains $_ -and $_ -notmatch "^(Administrator|DefaultAccount|Guest|WDAGUtilityAccount)$" }
-foreach ($admin in $unauthorizedAdmins) {
-    Write-Host "Removing Admin Priv: $admin"
-    Remove-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
-}
-
-
-# Add missing authorized users
-$missingUsers = $authorizedUsers | Where-Object { $currentUserAccounts -notcontains $_ }
-foreach ($user in $missingUsers) {
-    # Note: Creating user without password; may need to add password creation logic
-    Write-Host "Adding: $user"
-    New-LocalUser -Name $user -AccountNeverExpires -NoPassword -ErrorAction SilentlyContinue
-}
-
-# Remove unauthorized users
-$unauthorizedUsers = $currentUserAccounts | Where-Object { $authorizedUsers -notcontains $_ -and $authorizedAdmins -notcontains $_ }
-foreach ($user in $unauthorizedUsers) {
-    Write-Host "Removing: $user"
-    Remove-LocalUser -Name $user -ErrorAction SilentlyContinue
-}
-
-
-$missingAdmins = $authorizedAdmins | Where-Object { $currentAdmins -notcontains $_ }
-foreach ($admin in $missingAdmins) {
-    Write-Host "Adding Admin: $admin"
-    Add-LocalGroupMember -Group "Administrators" -Member $admin -ErrorAction SilentlyContinue
-}
-
-# Output completion message
-Write-Host "User accounts have been updated according to the authorized list."
-
-Write-Host "Now Changing Passwords:"
-
-$Password = ConvertTo-SecureString "aPASSWORD12345!" -AsPlainText -Force
-$UserAccounts = Get-LocalUser
-
-foreach ($UserAccount in $UserAccounts) {
-    try {
-        $UserAccount | Set-LocalUser -Password $Password
-        Write-Output "Password for $($UserAccount.Name) has been changed."
-    } catch {
-        Write-Output "Failed to change password for $($UserAccount.Name)."
+    if ($isInAdminSection) {
+        $authorizedAdmins += $line
+    } else {
+        $authorizedUsers += $line
     }
 }
 
+# Function to manage user account
+function Manage-UserAccount {
+    param(
+        [string]$username,
+        [boolean]$isAdmin
+    )
 
+    # Check if the user is in the whitelist
+    if ($username -in $whitelist) {
+        Write-Host "User $username is in the whitelist and will be ignored."
+        return
+    }
 
+    # Check if the user exists
+    $userExists = Get-LocalUser -Name $username -ErrorAction SilentlyContinue
 
-# Define new names for the accounts
-$newAdminName = "NewAdminName"
-$newGuestName = "NewGuestName"
+    # If user does not exist, create the user
+    if (-not $userExists) {
+        Write-Host "Creating user $username..."
+        New-LocalUser -Name $username -NoPassword -AccountNeverExpires -UserMayNotChangePassword -PasswordNeverExpires
+    }
 
-# Rename and disable the Administrator account
-$adminAccount = Get-LocalUser -Name "Administrator" -ErrorAction SilentlyContinue
-if ($null -ne $adminAccount) {
-    Rename-LocalUser -Name "Administrator" -NewName $newAdminName
-    Disable-LocalUser -Name $newAdminName
+    # Add or remove user from Administrators group
+    $adminGroup = Get-LocalGroup -Name "Administrators"
+    if ($isAdmin) {
+        Add-LocalGroupMember -Group $adminGroup -Member $username -ErrorAction SilentlyContinue
+        Write-Host "Added $username to Administrators group."
+    } else {
+        Remove-LocalGroupMember -Group $adminGroup -Member $username -ErrorAction SilentlyContinue
+        Write-Host "Removed $username from Administrators group."
+    }
 }
 
-# Rename and disable the Guest account
-$guestAccount = Get-LocalUser -Name "Guest" -ErrorAction SilentlyContinue
-if ($null -ne $guestAccount) {
-    Rename-LocalUser -Name "Guest" -NewName $newGuestName
-    Disable-LocalUser -Name $newGuestName
+# Process each user
+foreach ($admin in $authorizedAdmins) {
+    Manage-UserAccount -username $admin -isAdmin $true
 }
 
-Write-Host "Default accounts have been renamed and disabled."
+foreach ($user in $authorizedUsers) {
+    Manage-UserAccount -username $user -isAdmin $false
+}
+
+Write-Host "User account management completed."
 
 
