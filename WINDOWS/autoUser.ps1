@@ -94,7 +94,7 @@
 
 
 # Define the path to the users.txt file
-$filePath = "C:\Path\To\users.txt"
+$filePath = "users.txt"
 
 # Define the default whitelist of Windows 10 accounts
 $whitelist = @("Administrator", "DefaultAccount", "Guest", "WDAGUtilityAccount")
