@@ -2,7 +2,7 @@
 $usersFilePath = "users.txt"
 
 # Define the whitelist of users to ignore
-$whitelist = @("Administrator", "Guest", "DefaultAccount", "WDAGUtilityAccount","sshd")
+$whitelist = @("Administrator", "Guest", "DefaultAccount", "WDAGUtilityAccount")
 
 # Read the content of the users.txt file
 $usersFileContent = Get-Content $usersFilePath
