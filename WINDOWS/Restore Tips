@@ -4,7 +4,6 @@ POWERSHELL
         Find and double-click on Don't run specified Windows applications.
         Set it to Disabled or Not Configured.
         Navigate to Computer Configuration -> Administrative Templates -> Windows Components -> Windows PowerShell.
-        Ensure Turn on Script Execution is set to Enabled and configure the execution policy as needed (e.g., Allow all scripts).
 
 MMC
         Still in Group Policy Editor, navigate to User Configuration -> Administrative Templates -> System.
@@ -18,6 +17,7 @@ MALICIOUS AUTOSTART AFFECTING Group Policy or malicious autostarts in general
 
     Use the Task Manager (Ctrl + Shift + Esc) to review the list of startup programs. Look for any unfamiliar or suspicious applications that might be related to the reapplication of Group Policy.
     You can disable any suspicious startup items from here.
+OR MSINFO32
 
 2. Examine Scheduled Tasks
 
@@ -70,8 +70,6 @@ Event IDs to Look For
     Event ID 4738: A user account was changed (might indicate changes in user privileges or settings).
     Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
     Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
-
-
 
 
 
@@ -151,11 +149,6 @@ Automatic Updates
         Note: Ensure the NoAutoUpdate key is set to 0 to enable automatic updates.
 
 
-
-
-
-
-
 To identify a process, scheduled task, or any other mechanism that might be continuously applying unwanted or malicious registry edits or group policy changes to your system, you can follow these steps:
 
     Check Scheduled Tasks:
@@ -182,10 +175,6 @@ To identify a process, scheduled task, or any other mechanism that might be cont
         Check the Windows Event Viewer for any logs related to system changes, errors, or security issues that might provide clues.
         Look for events related to the registry, group policy, and scheduled tasks.
 
-    Use PowerShell to Query Services and Processes:
-        PowerShell scripts can be written to check for services or processes that might be responsible for these changes.
-        Example: Get-Service or Get-Process can be used to list and inspect services and processes.
-
     Check for Persistent Mechanisms:
         Look for any scripts or applications in startup folders and registry keys like Run and RunOnce.
         Command: Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Run and similar paths for both HKLM and HKCU.
@@ -193,17 +182,7 @@ To identify a process, scheduled task, or any other mechanism that might be cont
     Network Monitoring:
         If you suspect the changes might be coming from a network source, use network monitoring tools to check for suspicious traffic.
 
-    Professional Help:
-        If you're still unable to identify the source, consider consulting with a cybersecurity professional or company. They can provide more advanced tools and expertise.
 
-Remember, dealing with potentially malicious activity requires caution. Ensure that you have adequate backups before attempting to remove or modify system components. If you're unsure about any steps, it's better to seek professional assistance.
-
-Should you need more detailed guidance on any of these steps or have additional queries, feel free to ask. Your cybersecurity is paramount!
-User
-give me a list of all of the common registry keys I can find bad stuff in related to what I was just asking and what I should look for. Also how do I do step 3? gpedit is the only group policy tool on my computer and I can't find an option to see applied GPOs
-GPT
-
-Certainly! Let's begin with a list of common registry keys where you might find suspicious or unwanted entries related to system behavior, startup items, services, and more. After that, I'll guide you through how to view applied Group Policy Objects (GPOs) without the Group Policy Management Console.
 Common Registry Keys to Check
 
     Run and RunOnce Keys:
@@ -247,13 +226,44 @@ Common Registry Keys to Check
         %PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Startup
         Look For: Files that run on startup.
 
-Viewing Applied GPOs
+PREREQUISITES
 
-Since you don't have the Group Policy Management Console, you can use the Resultant Set of Policy (RSoP) tool or the command line to view applied policies:
+User Auditing (Adding/deleting users and promoting/demoting admin rights)
 
-    Using RSoP (GUI Tool):
-        Press Win + R, type rsop.msc, and press Enter.
-        This tool simulates the policy settings applied to your computer and user account.
+Service/Permission: User Account Control (UAC) should be configured to allow administrative actions. Ensure the account executing the script has administrative privileges.
+Verification: Check the account's privileges in the Control Panel under 'User Accounts'. Use PowerShell or CMD with elevated privileges.
+Logging/File Finding (Recursing through directories and returning file information)
+
+Service/Permission: Administrative privileges are crucial for accessing all file directories without restriction.
+Verification: Test read/write access in protected directories. Use the Test-Path PowerShell cmdlet to confirm access.
+Application Auditing (Choco installation, application management)
+
+Service/Permission: Ensure Chocolatey is installed with proper permissions and that the script runs with administrative rights for installing/uninstalling applications.
+Verification: Check Chocolatey's installation and run a test installation of a simple package. Make sure the script can invoke administrative commands.
+Policy Wiper Script (Removing potentially harmful GPOs)
+
+Service/Permission: Group Policy Management Console (GPMC) access is needed. Administrative privileges are required to alter Group Policy Objects.
+Verification: Access the GPMC to ensure the script has the necessary permissions. Verify with a test GPO if possible.
+Scripts for Registry Changes, Firewall Rules, LGPOs, and System Hardening
+
+Service/Permission:
+Registry: Administrative privileges to modify the registry.
+Firewall: Ensure the Windows Firewall service is running and accessible.
+LGPOs: Access to Local Group Policy Editor with administrative rights.
+System Hardening: Permissions to execute system-level changes.
+Verification:
+Test registry edits on non-critical keys.
+Create and delete a test firewall rule.
+Apply a test policy using Local Group Policy Editor.
+Run a subset of the hardening script to check for execution errors.
+Registry Additions for Chrome AppSecurity
+
+Service/Permission: Administrative rights to edit the registry and Chrome policies.
+Verification: Apply a test policy specific to Chrome and verify its effect in the Chrome settings.
+Service Configurations
+
+Service/Permission: Administrative rights are required to modify service configurations. Ensure the 'Windows Management Instrumentation' service is running for querying and configuring services.
+Verification: Use PowerShell or 'services.msc' to modify a test service's startup type or properties.
 
     Using Command Line:
         Open Command Prompt or PowerShell with administrative privileges.
