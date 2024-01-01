@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+learn about SAM (security account manager)
 test scripts again
 look into nessus tool??
 registry baseline
