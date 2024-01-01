@@ -48,7 +48,7 @@ function Manage-UserAccount {
     # If user does not exist, create the user
     if (-not $userExists) {
         Write-Host "Creating user $username..."
-        New-LocalUser -Name $username -NoPassword -AccountNeverExpires -UserMayNotChangePassword -PasswordNeverExpires
+        New-LocalUser -Name $username -NoPassword -AccountNeverExpires -UserMayNotChangePassword
     }
 
     # Add or remove user from Administrators group
@@ -120,5 +120,3 @@ if ($null -ne $guestAccount) {
 }
 
 Write-Host "Default accounts have been renamed and disabled."
-
-
