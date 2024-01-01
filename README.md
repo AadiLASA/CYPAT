@@ -8,9 +8,9 @@ OLD LGPO CONFIG NAME : {AC9CB38C-EE4E-46BB-93EC-C655C5CF3138}
 
 
 **USER.txt FORMAT**
-Authorized Administrators:
-Imper
-USER1
-Authorized Users:
-Jake
-Jill
+Authorized Administrators:<br>
+Imper<br>
+USER1<br>
+Authorized Users:<br>
+Jake<br>
+Jill<br>
