@@ -4,6 +4,7 @@ review firewall rules
 
 TODO FOR SEMIS:
 test scripts again
+look into nessus tool??
 registry baseline
   examining configured GPOs on the challenge image or comparing default Windows folder permissions with those harvested during competition.
 create necessary utilities checklist (pre script, winfirewall service running, proper permissions, etc.)
