@@ -33,7 +33,7 @@ function Manage-ChocoPackage {
 }
 
 # Prompt for Applications to Install, Uninstall, and Update
-$actions = @("install", "uninstall", "update")
+$actions = @("uninstall", "install", "update")
 foreach ($action in $actions) {
     do {
         $packageName = Read-Host "Enter a package name to $action (or just press Enter to skip)"
