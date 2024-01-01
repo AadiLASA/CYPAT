@@ -270,4 +270,52 @@ Verification: Use PowerShell or 'services.msc' to modify a test service's startu
         Run the command: gpresult /H GPReport.html
         This command generates a report in HTML format which you can view in your web browser. It shows all the GPOs applied to your computer and user account.
 
-Remember to exercise caution when modifying registry settings, and ensure you have backups of your system and important data. If you find suspicious entries, it's advisable to research them further before taking action, as some legitimate software might use these keys for normal operations.
+
+
+===========================================================================================================================================================================================
+USE COMMON REPAIR TOOLS OFF THE BAT
+===========================================================================================================================================================================================
+RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
+RUN MALWAREBYTES : https://www.malwarebytes.com/mwb-download/thankyou
+USE : DISM /Online /Cleanup-Image /RestoreHealth
+USE : sfc.exe /scannow
+===========================================================================================================================================================================================
+ENSURE THE FOLLOWING SERVICES SHOULD BE ENABLED AS PER BLACKVIPER SETTINGS
+===========================================================================================================================================================================================
+Windows Management Instrumentation (WMI): Winmgmt
+Windows Firewall: MpsSvc
+Windows Update Service: wuauserv
+Remote Procedure Call (RPC): RpcSs
+Task Scheduler: Schedule
+Background Intelligent Transfer Service (BITS): BITS
+Microsoft Management Console (MMC) Snap-ins: Not applicable as MMC snap-ins are not services but components.
+Group Policy Client: gpsvc
+Security Accounts Manager (SAM): Not a standalone service; it's part of the Local Security Authority Subsystem Service (lsass.exe).
+System Event Notification Service: SENS
+Cryptographic Services: CryptSvc
+Network List Service: netprofm
+Windows Defender Antivirus Service: WinDefend (Note: This might vary if a different antivirus is in use or if the system is using Windows Defender's newer service names in recent updates.)
+Distributed Link Tracking Client: TrkWks
+DNS Client: Dnscache
+
+Open UP MSCONFIG
+Go to -> Services
+Check Hide Microsoft Services
+Configure any extras (Also might be here : HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services)
+===========================================================================================================================================================================================
+CHECK FOR STARTUP MALICIOUS APPLICATIONS
+===========================================================================================================================================================================================
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run and HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run.
+MSINFO32
+TASK MANAGER
+TASK SCHEDULER
+===========================================================================================================================================================================================
+===========================================================================================================================================================================================
+===========================================================================================================================================================================================
+===========================================================================================================================================================================================
+===========================================================================================================================================================================================
+===========================================================================================================================================================================================
+
+
+
+
