@@ -4,6 +4,7 @@ review firewall rules
 
 TODO FOR SEMIS:
 test scripts again
+registry baseline
 create necessary utilities checklist (pre script, winfirewall service running, proper permissions, etc.)
 FIX THE USER AUDITITING WTF AND MAKE SURE TO REMOVE CHOCO FROM SCRIPT (JUST DO IT AFTER)
 make list of services that must be up and running before script
