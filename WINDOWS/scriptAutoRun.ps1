@@ -267,44 +267,7 @@ function winRM() {
     }
 }
 
-function anonLdap() {
-    Write-Host "Disabling anonymous LDAP..." -ForegroundColor Gray
-    $OSWMI = (Get-WmiObject Win32_OperatingSystem).Caption
-    $RootDSE = Get-ADRootDSE
-    $ObjectPath = 'CN=Directory Service,CN=Windows NT,CN=Services,{0}' -f $RootDSE.ConfigurationNamingContext
-    switch -wildcard($OSWMI){
-        '*Windows 10*' {
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        '*Windows 8.1*' {
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        '*Windows 8*' {
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        'Windows 7*'{
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        '*Windows Vista*'{
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        '*Windows XP*'{
-            Write-Warning "Localhost is not a windows server. Moving on to next function"
-        }
-        '*Windows Server*'{
-            try {
-                Set-ADObject -Identity $ObjectPath -Add @{ 'msDS-Other-Settings' = 'DenyUnauthenticatedBind=1' }
-            }
-            catch {
-                Write-Output "$Error[0] $_" | Out-File "C:\Program Files\ezScript\anonLdap.txt"
-                Write-Host "Writing error to file" -ForegroundColor DarkYellow        
-            }
-        }
-        default {
-            Write-Output "Unknown OS: $OS"
-        }
-    }
-}
+
 function defenderConfig() {
     Write-Host "Configuring WinDefender" -ForegroundColor Gray
     try {
