@@ -310,9 +310,25 @@ MSINFO32
 TASK MANAGER
 TASK SCHEDULER
 ===========================================================================================================================================================================================
+USE EVENT VIEWER Use Event Viewer (eventvwr.msc) can provide logs that might indicate what processes or scripts are being executed at logon.
 ===========================================================================================================================================================================================
+    Security Logs
+        These logs can provide information about login attempts, changes to security settings, and other security-related activities. Look for any unusual patterns or entries around the times you suspect Group Policy settings were modified.
+    System Logs
+        System logs contain events logged by the operating system components. These can include system errors, warnings, and informational events, some of which may be related to Group Policy changes.
+    Application Logs
+        These logs hold events logged by applications. If a specific application is responsible for modifying Group Policy settings, you might find relevant entries here.
+    Group Policy Operational Logs
+        Located under "Applications and Services Logs" -> "Microsoft" -> "Windows" -> "GroupPolicy" -> "Operational". This log specifically tracks Group Policy processing and can be very useful in identifying when and how Group Policy was applied or refreshed.
+Event IDs to Look For
+    Event ID 4688: A new process has been created (can help track execution of scripts or programs).
+    Event ID 4738: A user account was changed (might indicate changes in user privileges or settings).
+    Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
+    Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
 ===========================================================================================================================================================================================
+NIRSOFT/SYSINTERNALS TOOLS
 ===========================================================================================================================================================================================
+Check for streams
 ===========================================================================================================================================================================================
 ===========================================================================================================================================================================================
 
