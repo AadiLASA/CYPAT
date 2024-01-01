@@ -1,11 +1,6 @@
 my immediate todo:
 
-
-understand permissions and privelege mangament (how to promote for uninstalls like trusteduninstaller)
 review firewall rules
-
-hurry tf up and complete these
-
 
 TODO FOR SEMIS:
 test scripts again
@@ -24,7 +19,7 @@ make the appsec file and start adding stuff to it. first find out all crit servi
 wtf the audit poplicies aren't in the gpo. manually do the setaudit policy thing from the OG policy script --> take it out of policy wiper lmfao
   maybe change the Audit.csv file in the lgpo. if not, either keep the script in policy wiper, make a seperate audit policy script, or just attempt reimporting and exporting the LGPO and see what happens.
 move the appmgmt order so it's, uninstall, update, install
-fix errors with scriptAutoRun and script as a whole. get rid of the r to confirm bs
+fix errors with scriptAutoRun and script as a whole.
 apply the other registry changes
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
 netstat more more more
@@ -35,12 +30,10 @@ secure various ports. learn how to use netstat -ano or other netstat tools to fi
 (IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
 have fallback for after completion
-make sure rdp stuff is there and in checklist
 once everything is done start actually learning how things work so you can tepuvlefix service or malware issues you’re gonna destroy vedanth and gideon
 Are there any ports I should straight up block for connections? How do I harden my windows 10 machine network wise
 look at insecure drivers
 look at insecure DLLs
-actually look into stigs
 man tf up and do all the images once these are all done.
 
 
