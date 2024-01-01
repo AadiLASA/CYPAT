@@ -17,6 +17,7 @@ you can bypass execution policy with bash
 learn how the windows file system actually works
 perhaps start baselining? --file permissions
 make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
+  appsec is also app auto updates and app permissions ontop of secure settings
   find out how to develop a method that would consistently flag all manually installed packages on the system.
 wtf the audit poplicies aren't in the gpo. manually do the setaudit policy thing from the OG policy script --> take it out of policy wiper lmfao
   maybe change the Audit.csv file in the lgpo. if not, either keep the script in policy wiper, make a seperate audit policy script, or just attempt reimporting and exporting the LGPO and see what happens.
