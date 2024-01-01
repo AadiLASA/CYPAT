@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+how to secure the network settings
 learn about SAM (security account manager)
   also into stuff like hidden users and weird stuff
 test scripts again
