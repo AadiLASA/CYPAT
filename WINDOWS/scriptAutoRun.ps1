@@ -437,10 +437,10 @@ function callScripts(){
     # passPoliciy > $null
     disableGuest > $null
     servicesFunc  > $null
-    susFinder > $null
+    #susFinder > $null
     hostFirewall > $null
     winRM > $null
-    anonLdap  > $null
+    #anonLdap  > $null
     defenderConfig > $null
     groupPolicy > $null
     telnetEnable > $null
