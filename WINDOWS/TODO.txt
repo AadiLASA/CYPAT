@@ -17,8 +17,6 @@ learn how the windows file system actually works
 make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
   appsec is also app auto updates and app permissions ontop of secure settings
   find out how to develop a method that would consistently flag all manually installed packages on the system.
-wtf the audit poplicies aren't in the gpo. manually do the setaudit policy thing from the OG policy script --> take it out of policy wiper lmfao
-move the appmgmt order so it's, uninstall, update, install
 fix errors with scriptAutoRun and script as a whole.
 apply the other registry changes
 GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
