@@ -4,6 +4,7 @@ review firewall rules
 
 TODO FOR SEMIS:
 learn about SAM (security account manager)
+  also into stuff like hidden users and weird stuff
 test scripts again
 look into nessus tool??
 registry baseline
