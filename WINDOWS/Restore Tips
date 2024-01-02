@@ -288,7 +288,6 @@ ensure you're an admin
 ===========================================================================================================================================================================================
 USE COMMON REPAIR TOOLS OFF THE BAT
 ===========================================================================================================================================================================================
-RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
 RUN MALWAREBYTES : https://www.malwarebytes.com/mwb-download/thankyou
 USE : DISM /Online /Cleanup-Image /RestoreHealth
 USE : sfc.exe /scannow
