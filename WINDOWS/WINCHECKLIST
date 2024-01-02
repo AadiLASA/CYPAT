@@ -82,6 +82,7 @@ PsExec
           (take control of like anything)
           takeown /f "C:\Windows\System32\OpenSSH" /r /d y
           icacls "C:\Windows\System32\OpenSSH" /grant rio:F /t
+          requires $admin share so don't disable LanMan stuff until you don't need it anymore
 Entire SYSINTERNAL SUITE AVAIALBE AT : https://learn.microsoft.com/en-us/sysinternals/downloads/
 ===========================================================================================================================================================================================
 Registry/File System/Group Baselining
