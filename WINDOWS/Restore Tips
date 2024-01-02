@@ -273,7 +273,8 @@ Verification: Use PowerShell or 'services.msc' to modify a test service's startu
 
 ===========================================================================================================================================================================================
 CHECK FOR PROPER PERMISSIONS
-===========================================================================================================================================================================================RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
+===========================================================================================================================================================================================
+RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
 ensure permissions look correct
 ensure you're an admin
         does admin gruop even exist
