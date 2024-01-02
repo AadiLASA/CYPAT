@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+take pics of default processes running from procaxplorer and autoruns to badeline during comp
 TCP-VIEW SYSINTERNALS, SIGCHECK, ACCESSENUM, REGSCANNER
 ensure netsh stuff is there and netsh reset
 hosts file...
