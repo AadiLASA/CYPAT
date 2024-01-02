@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+ensure netsh stuff is there and netsh reset
 hosts file...
 get secure adapter/port settings
 make sure important windows settings are covered
