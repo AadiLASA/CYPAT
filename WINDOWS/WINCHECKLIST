@@ -76,6 +76,7 @@ Check for streams in C drive with Nirsoft Alternate Stream Viewer : https://www.
 PROCMON/PROCHACKER and look for stuff : https://learn.microsoft.com/en-us/sysinternals/downloads/procmon
 Clean up remaining things with autoruns : https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
 AccessEnum
+ProcHacker replaces need for PsExec(you can also run as system) : https://processhacker.sourceforge.io/downloads.php
 PsExec
           (you can use CMD OR POWERSHELL but it's just a system-level elevated prompt for commands where you for some reason don't have permissions)
          ./PsExec.exe -i -s cmd.exe
