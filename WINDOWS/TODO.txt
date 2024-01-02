@@ -18,7 +18,7 @@ test scripts again
 look into nessus tool??
 registry baseline
   examining configured GPOs on the challenge image or comparing default Windows folder permissions with those harvested during competition.
-create necessary utilities checklist (pre script, winfirewall service running, proper permissions, etc.)
+ensure windows firewall settings from the GPO have a way of being configured
 make list of services that must be up and running before script
 retry heist image -> check if dlls actually broken. try actually doing in order so fixing malware stuff before script and try fixing firewall with psexec. in startup registry key find out what the actual exec was.
 configure service on/off tool. remember what you learned about ftp
