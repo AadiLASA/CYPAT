@@ -8,7 +8,7 @@ Delete any file locations/important details/processes from the forensics
 ===========================================================================================================================================================================================
 CHECK FOR PROPER PERMISSIONS
 ===========================================================================================================================================================================================
-RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
+start downloading updates before anything
 ensure permissions look correct
 ensure you're an admin
         does admin gruop even exist
@@ -16,6 +16,7 @@ ensure you're an admin
 ===========================================================================================================================================================================================
 USE COMMON REPAIR TOOLS OFF THE BAT
 ===========================================================================================================================================================================================
+RUN MERT : https://github.com/orangegrouptech/Windows-Malware-Effects-Remediation-Tool
 RUN MALWAREBYTES : https://www.malwarebytes.com/mwb-download/thankyou
 USE : DISM /Online /Cleanup-Image /RestoreHealth
 USE : sfc.exe /scannow
@@ -87,3 +88,57 @@ Registry/File System/Group Baselining
 ===========================================================================================================================================================================================
 Start doing registry baselining
 Compare existing groups with default groups from GROUPS.txt
+===========================================================================================================================================================================================
+SCRIPTS
+===========================================================================================================================================================================================
+It's finally time to run that script huh.
+Hop into an elevated shell and navigate to the directory (possibly with system level access)
+Do : Set-ExecutionPolicy Unrestricted -Force
+Create users.txt file in .../CYPAT-main/Windows
+    Format{
+        Authorized Administrators:
+        A
+        B
+        Authorized Users:
+        C
+        D
+    }
+Look at core services and ensure they are enabled in script. Do any last minute tweaks to ensure coverage.
+Go through each module one by one.
+Note any errors that occur.
+Swiftly check that the following effects were changed.
+    Logs are created in C:
+    GPOs were established
+    Automatic Updates are On
+    Firewall Rules Set
+    Settings are Configured
+        (rdp disabled, UAC fully enabled)
+===========================================================================================================================================================================================
+POST SCRIPT AUDITNG
+===========================================================================================================================================================================================
+Restart Computer to ensure changes are all applied
+ensure users are logged off from tank manager
+
+If updates aren't fixed just paste the following registry keys in upon startup:
+     reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AutoInstallMinorUpdates /t REG_DWORD /d 1 /f
+    reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v NoAutoUpdate /t REG_DWORD /d 0 /f
+    reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU /v AUOptions /t REG_DWORD /d 4 /f
+    reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate\Auto Update" /v AUOptions /t REG_DWORD /d 4 /f
+    reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+    reg add HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate /v ElevateNonAdmins /t REG_DWORD /d 0 /f
+    reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\Explorer /v NoWindowsUpdate /t REG_DWORD /d 0 /f
+    reg add "HKLM\SYSTEM\Internet Communication Management\Internet Communication" /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+    reg add HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\WindowsUpdate /v DisableWindowsUpdateAccess /t REG_DWORD /d 0 /f
+
+FIX ANY PROBLEMS THAT OCCURED DURING SCRIPT
+    apps didn’t update
+    apps didn’t uninstall
+    certain settings couldn’t apply
+    couldn’t get logs
+    user mishaps
+Open up file logs alongside everything tools and go through. Scan for any weird extensions, file names, and promptly remove. Look for any remaining applications that evaded the initial scan.
+===========================================================================================================================================================================================
+SERVICE/APP SECURITY
+===========================================================================================================================================================================================
+
+

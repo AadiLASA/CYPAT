@@ -3,6 +3,8 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+elaborate on winchecklist and create timestamps for everything
+come back to this for registry baseline : https://www.youtube.com/watch?v=7W_3wnjvj5c
 analyze the sysinternals autoruns, netstat/backdoor stuff from tirefire and john, procmon/hacker, look at network scanning tools like wireshark. also about accessENUM
 script windows defender manually because LGPO can't do it
 review nirsoft tools and keep working on checklist from security tips
