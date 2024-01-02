@@ -68,9 +68,14 @@ Event IDs to Look For
 ===========================================================================================================================================================================================
 NIRSOFT/SYSINTERNALS TOOLS
 ===========================================================================================================================================================================================
-Check for streams
-PROCMON/PROCHACKER and look for stuff
-Clean up remaining things with autoruns
+Check for streams in C drive with Nirsoft Alternate Stream Viewer : https://www.nirsoft.net/utils/alternate_data_streams.html
+        To view stream content use the following command in powershell : Get-Content <filename> -Stream <streamname>
+        By default, Windows flags internet installed applications with a benign metadata stream called Zone.Identifier
+PROCMON/PROCHACKER and look for stuff : https://learn.microsoft.com/en-us/sysinternals/downloads/procmon
+Clean up remaining things with autoruns : https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
+AccessEnum
+PsExec
+Entire SYSINTERNAL SUITE AVAIALBE AT : https://learn.microsoft.com/en-us/sysinternals/downloads/
 ===========================================================================================================================================================================================
 Registry/File System/Group Baselining
 ===========================================================================================================================================================================================
