@@ -3,6 +3,9 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+hosts file...
+get secure adapter/port settings
+make sure important windows settings are covered
 elaborate on winchecklist and create timestamps for everything
 come back to this for registry baseline : https://www.youtube.com/watch?v=7W_3wnjvj5c
 analyze the sysinternals autoruns, netstat/backdoor stuff from tirefire and john, procmon/hacker, look at network scanning tools like wireshark. also about accessENUM

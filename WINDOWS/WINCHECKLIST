@@ -140,5 +140,31 @@ Open up file logs alongside everything tools and go through. Scan for any weird 
 ===========================================================================================================================================================================================
 SERVICE/APP SECURITY
 ===========================================================================================================================================================================================
-
-
+Ensure the "Turn Windows Features On or Off" section looks correct
+    Things to never have on
+        Telnet client\server
+        SNMP
+        RIP Listener
+        Client for NFS
+        Internet Information Services (IIS)
+        World Wide Web Services
+        If FTP sever then turn on TFTP otherwise make sure that it is not checked
+        Disable SMB v1
+        Turn Windows features on or off=Uncheck SMB 1.0/CIFS File Sharing Support
+Ensure that services are in compliance with Black Viper settings from services.msc
+Afterwards, go into MSCONFIG -> Services 
+    Tick hide all microsoft services
+    Re-Do prior unfixed service management
+Start going through configuration files for different applications. If you can't find, with everything tool, ask GPT.
+Enable correct settings using preconfigured files, read me information, google, chatgpt, and logical sense
+    Ensure stuff like automatic updates are enabled
+    Auditing is good and should be on usually
+    Passwords are important and should usually be enabled if possible
+    Encryption is usually a good thing
+===========================================================================================================================================================================================
+FINAL STRETCH
+===========================================================================================================================================================================================
+Ensure all tasks from read me are properly configured. 
+Ensure that everything so far has been done correctly
+Ensure all updates are installed and that updates, firewalls, user auditing, uac, application management is done
+Start mapping vulnerabilities with categories. Target which ever seems to be missing. Especially if any one category has 0.
