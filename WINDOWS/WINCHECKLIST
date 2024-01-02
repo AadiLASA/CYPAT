@@ -161,6 +161,11 @@ Enable correct settings using preconfigured files, read me information, google, 
     Auditing is good and should be on usually
     Passwords are important and should usually be enabled if possible
     Encryption is usually a good thing
+Go through browsers settings
+    auto updates
+    ensure that no extensions are installed
+    Cookies/Browsing History is cleared
+    No bookmarks
 ===========================================================================================================================================================================================
 FINAL STRETCH
 ===========================================================================================================================================================================================
@@ -168,3 +173,4 @@ Ensure all tasks from read me are properly configured.
 Ensure that everything so far has been done correctly
 Ensure all updates are installed and that updates, firewalls, user auditing, uac, application management is done
 Start mapping vulnerabilities with categories. Target which ever seems to be missing. Especially if any one category has 0.
+If still not maxed i don't even know anymore wtf do they want.
