@@ -49,6 +49,7 @@ function Manage-UserAccount {
     if (-not $userExists) {
         Write-Host "Creating user $username..."
         New-LocalUser -Name $username -NoPassword -AccountNeverExpires -UserMayNotChangePassword
+        Add-LocalGroupMember -Group "Users" -Member $username -ErrorAction SilentlyContinue
     }
 
     # Add or remove user from Administrators group
