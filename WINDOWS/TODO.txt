@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+analyze the sysinternals autoruns, netstat/backdoor stuff from tirefire and john, procmon/hacker, look at network scanning tools like wireshark
 script windows defender manually because LGPO can't do it
 review nirsoft tools and keep working on checklist from security tips
 how to secure the network settings
