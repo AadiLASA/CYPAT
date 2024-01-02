@@ -75,6 +75,11 @@ PROCMON/PROCHACKER and look for stuff : https://learn.microsoft.com/en-us/sysint
 Clean up remaining things with autoruns : https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
 AccessEnum
 PsExec
+          (you can use CMD OR POWERSHELL but it's just a system-level elevated prompt for commands where you for some reason don't have permissions)
+         ./PsExec.exe -i -s cmd.exe
+          (take control of like anything)
+          takeown /f "C:\Windows\System32\OpenSSH" /r /d y
+          icacls "C:\Windows\System32\OpenSSH" /grant rio:F /t
 Entire SYSINTERNAL SUITE AVAIALBE AT : https://learn.microsoft.com/en-us/sysinternals/downloads/
 ===========================================================================================================================================================================================
 Registry/File System/Group Baselining
