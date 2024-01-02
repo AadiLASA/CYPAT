@@ -22,4 +22,4 @@ foreach ($path in $registryPolPaths) {
 gpupdate /force
 
 # Output completion message
-Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Gree
+Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Green
