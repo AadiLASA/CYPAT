@@ -93,7 +93,7 @@ do {
         '5' { Invoke-Script './POLICYWIPE.ps1' }
         '6' { Invoke-Script './hardeningkitty.ps1' }
         '7' { Invoke-Script './scriptAutoRun.ps1' }
-        '8' { Invoke-Script './LGPO.exe /g "../{AC9CB38C-EE4E-46BB-93EC-C655C5CF3138}"' }
+        '8' { Invoke-Script './lgpoapply.ps1' }
         '9' { Invoke-Script './AUDITPOL.ps1' }
         '10' { Invoke-Script './chromesecurity.ps1' }
         '11' { Invoke-Script './services.ps1' }
