@@ -3,7 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
-TCP-VIEW SYSINTERNALS
+TCP-VIEW SYSINTERNALS, SIGCHECK, ACCESSENUM, REGSCANNER
 ensure netsh stuff is there and netsh reset
 hosts file...
 get secure adapter/port settings
