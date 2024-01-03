@@ -3,6 +3,7 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+https://github.com/simeononsecurity/Standalone-Windows-STIG-Script -> look at this dudes stuff
 take pics of default processes running from procaxplorer and autoruns to badeline during comp
 TCP-VIEW SYSINTERNALS, SIGCHECK, ACCESSENUM, REGSCANNER
 ensure netsh stuff is there and netsh reset
