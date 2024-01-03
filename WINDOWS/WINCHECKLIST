@@ -138,6 +138,8 @@ FIX ANY PROBLEMS THAT OCCURED DURING SCRIPT
     certain settings couldn’t apply
     couldn’t get logs
     user mishaps
+
+Go into GPEDIT and import your firewall settings
 Open up file logs alongside everything tools and go through. Scan for any weird extensions, file names, and promptly remove. Look for any remaining applications that evaded the initial scan.
 ===========================================================================================================================================================================================
 SERVICE/APP SECURITY
