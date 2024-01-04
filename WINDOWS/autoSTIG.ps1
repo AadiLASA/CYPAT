@@ -1,5 +1,3 @@
-#install git
-choco install git
 #create directory
 mkdir "C:\Cypat-main\Windows\Standalone-Windows-STIG-Script"
 cd "C:\Cypat-main\Windows\Standalone-Windows-STIG-Script"
