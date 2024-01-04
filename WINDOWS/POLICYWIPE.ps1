@@ -18,8 +18,14 @@ foreach ($path in $registryPolPaths) {
     }
 }
 
-# Refresh the policy
-gpupdate /force
+
+ Write-Host "Removing Existing Local GPOs" -ForegroundColor Green
+    #Remove and Refresh Local Policies
+    Remove-Item -Recurse -Force "$env:WinDir\System32\GroupPolicy" | Out-Null
+    Remove-Item -Recurse -Force "$env:WinDir\System32\GroupPolicyUsers" | Out-Null
+    secedit /configure /cfg "$env:WinDir\inf\defltbase.inf" /db defltbase.sdb /verbose | Out-Null
+    gpupdate /force | Out-Null
+
 
 # Output completion message
 Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Green
