@@ -94,6 +94,7 @@ Compare existing groups with default groups from GROUPS.txt
 SCRIPTS
 ===========================================================================================================================================================================================
 It's finally time to run that script huh.
+Install GIT.(if broken just cop the directory download from: https://github.com/simeononsecurity/Standalone-Windows-STIG-Script/tree/master)
 Hop into an elevated shell and navigate to the directory (possibly with system level access)
 Do : Set-ExecutionPolicy Unrestricted -Force
 Create users.txt file in .../CYPAT-main/Windows
