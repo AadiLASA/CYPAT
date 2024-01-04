@@ -68,6 +68,7 @@ function Show-Menu {
     Write-Host "3: Run File Finder"
     Write-Host "4: Run Application Auditing"
     Write-Host "5: Run Delete Policies"
+    Write-Host "13: Auto Stig Script"
     Write-Host "6: Download Hardening Kitty"
     Write-Host "7: Run Faraday Script"
     Write-Host "8: Execute LGPO"
@@ -98,6 +99,7 @@ do {
         '10' { Invoke-Script './chromesecurity.ps1' }
         '11' { Invoke-Script './services.ps1' }
         '12' { Invoke-Script './servcsv.ps1' }
+        '13' {Invoke-Script './autoSTIG.ps1'}
         'Q' {
             Write-Host "Goodbye Alt0id"
             Start-Sleep -seconds 5
