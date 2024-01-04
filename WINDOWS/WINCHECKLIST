@@ -23,6 +23,9 @@ USE : sfc.exe /scannow
 ===========================================================================================================================================================================================
 ENSURE THE FOLLOWING SERVICES SHOULD BE ENABLED AS PER BLACKVIPER SETTINGS
 ===========================================================================================================================================================================================
+Open elevated shell
+Use (Set-Service -Name <servicename> -StartupType Automatic) and (Start-Service <servicename>) to start services 
+
 Windows Management Instrumentation (WMI): Winmgmt
 Windows Firewall: MpsSvc
 Windows Update Service: wuauserv
