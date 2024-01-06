@@ -17,9 +17,12 @@ Identity Management: Active Directory Domain Services
 
 
 specifically mentioned for windows:
+APACHE2
+RUN APACHE2 SCRIPT. MAKE SURE TO PUT THE PATH INFO BEFORE RUNNING
+
 
 IIS 
-
+RUN IIS SCRIPT
 
 SMB
     Run Script and Restart Services
