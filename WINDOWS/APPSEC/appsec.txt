@@ -20,6 +20,10 @@ specifically mentioned for windows:
 
 IIS 
 SMB
+Run Script and Restart Services
+LanmanServer
+LanmanWorkstation
+
 SMTP
 
 
