@@ -3,6 +3,8 @@ my immediate todo:
 review firewall rules
 
 TODO FOR SEMIS:
+improve sigcheck script
+finish up the appsec
 find way to check/valudate file signatures and hashing and search for easy ways to find poisoned dlls or packages
 https://github.com/simeononsecurity/Standalone-Windows-STIG-Script -> look at this dudes stuff
 take pics of default processes running from procaxplorer and autoruns to badeline during comp
