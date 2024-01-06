@@ -19,10 +19,15 @@ Identity Management: Active Directory Domain Services
 specifically mentioned for windows:
 
 IIS 
+
+
 SMB
-Run Script and Restart Services
-LanmanServer
-LanmanWorkstation
+    Run Script and Restart Services
+      LanmanServer
+      LanmanWorkstation
+    Review the secure configuration settings
+      Get-SMBClientConfiguration
+      Get-SMBServerConfiguration
 
 SMTP
 
