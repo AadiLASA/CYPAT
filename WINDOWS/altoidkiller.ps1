@@ -71,6 +71,7 @@ function Show-Menu {
     Write-Host "13: Auto Stig Script"
     Write-Host "6: Download Hardening Kitty"
     Write-Host "7: Run Faraday Script"
+    Write-Host "14: Win10 Hardening Script"
     Write-Host "8: Execute LGPO"
     Write-Host "9: Run Audit Policies"
     Write-Host "10: Run Chrome Appsec"
@@ -100,6 +101,7 @@ do {
         '11' { Invoke-Script './services.ps1' }
         '12' { Invoke-Script './servcsv.ps1' }
         '13' {Invoke-Script './autoSTIG.ps1'}
+        '14' {Invoke-Script './win10hardening.ps1'}
         'Q' {
             Write-Host "Goodbye Alt0id"
             Start-Sleep -seconds 5
