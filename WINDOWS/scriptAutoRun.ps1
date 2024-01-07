@@ -231,9 +231,17 @@ function hostFirewall() {
 function winRM() {
     Write-Host "Disabling WinRm..." -ForegroundColor Gray
     try {
-        Disable-PSRemoting -Force
-        Set-Item wsman:\localhost\client\trustedhosts * -Force
-        Set-PSSessionConfiguration -Name "Microsoft.PowerShell" -SecurityDescriptorSddl "O:NSG:BAD:P(A;;GA;;;BA)(A;;GA;;;WD)(A;;GA;;;IU)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"
+        # Disables PowerShell remoting on the computer
+Disable-PSRemoting -Force
+
+# Sets TrustedHosts to accept connections from any host (use cautiously)
+Set-Item wsman:\localhost\client\trustedhosts * -Force
+
+# Modifies the security descriptor for the PowerShell session configuration
+# Replace 'your_sddl_string' with your actual SDDL string
+$yourSddlString = "O:NSG:BAD:P(A;;GA;;;BA)(A;;GA;;;WD)(A;;GA;;;IU)S:P(AU;FA;GA;;;WD)(AU;SA;GXGW;;;WD)"
+Set-PSSessionConfiguration -Name "Microsoft.PowerShell" -SecurityDescriptorSddl $yourSddlString
+
     }
     catch {
         Write-Output "$Error[0] $_" | Out-File "C:\Program Files\ezScript\winRM.txt"
