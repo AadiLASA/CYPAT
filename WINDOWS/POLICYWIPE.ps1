@@ -29,3 +29,5 @@ foreach ($path in $registryPolPaths) {
 
 # Output completion message
 Write-Host "Group Policy has been reset to default. A system restart might be required." -ForegroundColor Green
+Write-Host "Doing NETSH RESET"
+netsh advfirewall reset
