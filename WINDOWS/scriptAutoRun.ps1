@@ -162,30 +162,6 @@ catch{
 # }
 # }
 
-function disableGuest(){
-    Write-Host "Disabling Guest account"
-	try{
-        net user Guest /active:no
-    }
-    catch{
-        Write-Host "guesdis fail"
-    }
-	Write-Host "Guest account disabled"
-}
-
-function servicesFunc(){
-
-    try{
-    Write-host "All services:"
-    Get-Service
-    Write-host "Delete services  with following syntax :  Stop-Service <insert service name here>"
-    Stop-Service "ftpsvc"
-    Write-host "Dont forget to delete the FTP Server folder under control panel."
-    }
-    catch{
-        Write-Host "services FAIL"
-    }
-}
 
 
 
@@ -290,15 +266,32 @@ function defenderConfig() {
 function groupPolicy() {
     Write-Host "Creating Group Policies..." -ForegroundColor Gray
     try {
-        Set-PolicyFileEntry -Path $env:systemroot\system32\GroupPolicy\Machine\registry.pol -Key "SOFTWARE\Policies\Microsoft\Messenger\Client" -ValueName PreventAutoRun -Type DWord -Data 1
-        Set-PolicyFileEntry -Path $env:systemroot\system32\GroupPolicy\Machine\registry.pol -Key "SOFTWARE\Policies\Microsoft\SearchCompanion" -ValueName DisableContentFileUpdates -Type DWord -Data 1
-        Set-PolicyFileEntry -Path $env:systemroot\system32\GroupPolicy\Machine\registry.pol -Key "SOFTWARE\Policies\Microsoft\Windows NT\IIS" -ValueName PreventIISInstall -Type DWord -Data 1
-        Set-PolicyFileEntry -Path $env:systemroot\system32\GroupPolicy\Machine\registry.pol -Key "SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -ValueName NoAutoUpdate -Type DWord -Data 0
+       # Ensure running as an Administrator
+
+# Set registry values
+$registryPaths = @(
+    "HKLM:\SOFTWARE\Policies\Microsoft\Messenger\Client",
+    "HKLM:\SOFTWARE\Policies\Microsoft\SearchCompanion",
+    "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\IIS",
+    "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU"
+)
+
+# Ensure registry paths exist
+foreach ($path in $registryPaths) {
+    if (-not (Test-Path $path)) {
+        New-Item -Path $path -Force
+    }
+}
+
+# Modify specific settings
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Messenger\Client" -Name "PreventAutoRun" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\SearchCompanion" -Name "DisableContentFileUpdates" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows NT\IIS" -Name "PreventIISInstall" -Value 1 -Type DWord
+Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU" -Name "NoAutoUpdate" -Value 0 -Type DWord
 
     }
     catch {
-        Write-Output "$Error[0] $_" | Out-File "C:\Program Files\ezScript\groupPolicy.txt"
-        Write-Host "Writing error to file" -ForegroundColor DarkYellow
+        Write-Host "Additional Registry Edits Failed"
     }
 
 }
@@ -432,13 +425,8 @@ function callScripts(){
     createDir > $null
     regAdd > $null
     dnsFlush > $null
-    # passPoliciy > $null
-    disableGuest > $null
-    servicesFunc  > $null
-    #susFinder > $null
     hostFirewall > $null
     winRM > $null
-    #anonLdap  > $null
     defenderConfig > $null
     groupPolicy > $null
     telnetEnable > $null
