@@ -61,6 +61,27 @@ function Manage-UserAccount {
         Remove-LocalGroupMember -Group $adminGroup -Member $username -ErrorAction SilentlyContinue
         Write-Host "Removed $username from Administrators group."
     }
+
+$localUsers = Get-LocalUser
+
+# Loop through each local user
+foreach ($user in $localUsers) {
+    # Check if the user is not in the authorized list
+    if ($user.Name -notin $authorizedUsers) {
+    if($user.Name -notin $authorizedAdmins) {     try {
+            # Attempt to delete the user
+            Remove-LocalUser -Name $user.Name
+            Write-Host "User $($user.Name) has been removed."
+        } catch {
+            # Handle errors, like if the user cannot be removed
+            Write-Host "Error removing user $($user.Name): $_"
+        }}
+   
+    }
+}
+
+
+
 }
 
 # Process each user
