@@ -124,7 +124,7 @@ catch {
 
 function dnsFlush(){try{
     Write-Host "Flushing DNS..."
-	ipconfig /flushdns >nul
+	ipconfig /flushdns > $null
 	Write-Host "Flushed DNS."
 	Write-Host "Clearing contents of: C:\Windows\System32\drivers\etc\hosts ..."
 	attrib -r -s C:\WINDOWS\system32\drivers\etc\hosts
