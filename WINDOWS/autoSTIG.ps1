@@ -1,7 +1,5 @@
-#create directory
-mkdir "C:\Cypat-main\Windows\Standalone-Windows-STIG-Script" -force
 #clone repo in current directory
-git repo clone simeononsecurity/Standalone-Windows-STIG-Script
+git clone https://github.com/simeononsecurity/Standalone-Windows-STIG-Script.git
 #navigate to directory
 cd "C:\Cypat-main\Windows\Standalone-Windows-STIG-Script"
 #run command
