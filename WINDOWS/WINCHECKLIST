@@ -69,6 +69,9 @@ Event IDs to Look For
     Event ID 4738: A user account was changed (might indicate changes in user privileges or settings).
     Event ID 4720: A user account was created (useful if new accounts are being made for malicious purposes).
     Event ID 4704: A user right was assigned (can indicate changes in user rights, which could relate to Group Policy changes).
+
+It is possible to detect GPO modifications by monitoring directory service changes using Windows event logs. Several events may be logged for such GPO modifications, including:
+Event ID 5136 Event ID 5137 Event ID 5138 Event ID 5139 Event ID 5141 
 ===========================================================================================================================================================================================
 NIRSOFT/SYSINTERNALS TOOLS
 ===========================================================================================================================================================================================
