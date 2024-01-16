@@ -24,6 +24,7 @@ signature scanning
     remember registry autorun stuff
     finish registry sam stuff
     get better AV
+    previous file version history
 security task manager
 some more good stuff : https://gist.github.com/mackwage/08604751462126599d7e52f233490efe?permalink_comment_id=4028081
 ensure firewlal is not in passive mode
