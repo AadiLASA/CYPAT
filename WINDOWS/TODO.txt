@@ -18,6 +18,7 @@ function Enable-PSScriptBlockLogging
 It is possible to detect GPO modifications by monitoring directory service changes using Windows event logs. Several events may be logged for such GPO modifications, including:
   Event ID 5136 Event ID 5137 Event ID 5138 Event ID 5139 Event ID 5141 
 signature scanning
+    finish asking gpt bro it's so over
     possible dependency baselining
     research ntfs stuff how to delete what is bad
     learn how to get DLLs to stop
