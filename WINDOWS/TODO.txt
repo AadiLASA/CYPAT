@@ -14,33 +14,19 @@ function Enable-PSScriptBlockLogging
     Set-ItemProperty $basePath -Name EnableScriptBlockLogging -Value "1"
 }
 
-
-It is possible to detect GPO modifications by monitoring directory service changes using Windows event logs. Several events may be logged for such GPO modifications, including:
-  Event ID 5136 Event ID 5137 Event ID 5138 Event ID 5139 Event ID 5141 
 signature scanning
-    finish asking gpt bro it's so over
-    possible dependency baselining
     research ntfs stuff how to delete what is bad
-    remember registry autorun stuff
-    finish registry sam stuff
-    get better AV
-security task manager
 some more good stuff : https://gist.github.com/mackwage/08604751462126599d7e52f233490efe?permalink_comment_id=4028081
 ensure firewlal is not in passive mode
 find way to check/valudate file signatures and hashing and search for easy ways to find poisoned dlls or packages
 make sure important windows settings are covered
 come back to this for registry baseline : https://www.youtube.com/watch?v=7W_3wnjvj5c
-review nirsoft tools and keep working on checklist from security tips
 how to secure the network settings
 look into nessus tool??
   examining configured GPOs on the challenge image or comparing default Windows folder permissions with those harvested during competition.
 make list of services that must be up and running before script
-retry heist image -> check if dlls actually broken. try actually doing in order so fixing malware stuff before script and try fixing firewall with psexec. in startup registry key find out what the actual exec was.
-configure service on/off tool. remember what you learned about ftp
-go into depth about net firewalls?
   possbily blocking port 21 for ftp if not allowed or smth like that
   secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
-LOOK THROUGH SERVICES AGAIN
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
 
 
