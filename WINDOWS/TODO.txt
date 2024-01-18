@@ -21,33 +21,18 @@ signature scanning
     finish asking gpt bro it's so over
     possible dependency baselining
     research ntfs stuff how to delete what is bad
-    learn how to get DLLs to stop
     remember registry autorun stuff
     finish registry sam stuff
     get better AV
-    previous file version history
 security task manager
 some more good stuff : https://gist.github.com/mackwage/08604751462126599d7e52f233490efe?permalink_comment_id=4028081
 ensure firewlal is not in passive mode
-test user auditing again
-finish up the appsec
 find way to check/valudate file signatures and hashing and search for easy ways to find poisoned dlls or packages
-https://github.com/simeononsecurity/Standalone-Windows-STIG-Script -> look at this dudes stuff
-take pics of default processes running from procaxplorer and autoruns to badeline during comp
-TCP-VIEW SYSINTERNALS, SIGCHECK, ACCESSENUM, REGSCANNER
-ensure netsh stuff is there and netsh reset
-get secure adapter/port settings
 make sure important windows settings are covered
-elaborate on winchecklist and create timestamps for everything
 come back to this for registry baseline : https://www.youtube.com/watch?v=7W_3wnjvj5c
-analyze the sysinternals autoruns, netstat/backdoor stuff from tirefire and john, procmon/hacker, look at network scanning tools like wireshark. also about accessENUM
-script windows defender manually because LGPO can't do it
 review nirsoft tools and keep working on checklist from security tips
 how to secure the network settings
-learn about SAM (security account manager)
-  also into stuff like hidden users and weird stuff
 look into nessus tool??
-registry baseline
   examining configured GPOs on the challenge image or comparing default Windows folder permissions with those harvested during competition.
 make list of services that must be up and running before script
 retry heist image -> check if dlls actually broken. try actually doing in order so fixing malware stuff before script and try fixing firewall with psexec. in startup registry key find out what the actual exec was.
@@ -55,19 +40,8 @@ configure service on/off tool. remember what you learned about ftp
 go into depth about net firewalls?
   possbily blocking port 21 for ftp if not allowed or smth like that
   secure various ports. learn how to use netstat -ano or other netstat tools to find network backdoors or bad ports)
-learn how the windows file system actually works
-make the appsec file and start adding stuff to it. first find out all crit services from old messages in the server. 
-  appsec is also app auto updates and app permissions ontop of secure settings
-  find out how to develop a method that would consistently flag all manually installed packages on the system.
-apply the other registry changes
-GO THROUGH A CHECKLIST OF CORE WINDOWS UTILITIES THAT MUST BE UP/WORKING BEFORE STARTING ANYTHING AFTER FORENSICS QUESTIONS
-get config files for appsec for common critical applications
 LOOK THROUGH SERVICES AGAIN
-(IMPORTANT) figure out core issues with system after forensics. you should understand the general problems and make a plan of attack before even beginning scripts
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
-look at insecure drivers
-look at insecure DLLs
-
 
 
 MISSING FROM APERTURE:
