@@ -77,6 +77,11 @@ NIRSOFT/SYSINTERNALS TOOLS
 ===========================================================================================================================================================================================
 Check for streams in C drive with Nirsoft Alternate Stream Viewer : https://www.nirsoft.net/utils/alternate_data_streams.html
         To view stream content use the following command in powershell : Get-Content <filename> -Stream <streamname>
+          more < whosthatpokemon-master(1).zip:Zone.Identifier:$DATA
+                [ZoneTransfer]
+                ZoneId=3
+                ReferrerUrl=https://github.com/menardi/whosthatpokemon
+                HostUrl=https://codeload.github.com/Menardi/whosthatpokemon/zip/refs/heads/master
         By default, Windows flags internet installed applications with a benign metadata stream called Zone.Identifier
         Stuff with high stream sizes should be investigated
 PROCMON/PROCHACKER and look for stuff : https://learn.microsoft.com/en-us/sysinternals/downloads/procmon
