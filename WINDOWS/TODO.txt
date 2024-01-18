@@ -36,7 +36,6 @@ https://github.com/simeononsecurity/Standalone-Windows-STIG-Script -> look at th
 take pics of default processes running from procaxplorer and autoruns to badeline during comp
 TCP-VIEW SYSINTERNALS, SIGCHECK, ACCESSENUM, REGSCANNER
 ensure netsh stuff is there and netsh reset
-hosts file...
 get secure adapter/port settings
 make sure important windows settings are covered
 elaborate on winchecklist and create timestamps for everything
@@ -47,7 +46,6 @@ review nirsoft tools and keep working on checklist from security tips
 how to secure the network settings
 learn about SAM (security account manager)
   also into stuff like hidden users and weird stuff
-test scripts again
 look into nessus tool??
 registry baseline
   examining configured GPOs on the challenge image or comparing default Windows folder permissions with those harvested during competition.
