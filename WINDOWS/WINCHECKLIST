@@ -81,7 +81,48 @@ Check for streams in C drive with Nirsoft Alternate Stream Viewer : https://www.
         Stuff with high stream sizes should be investigated
 PROCMON/PROCHACKER and look for stuff : https://learn.microsoft.com/en-us/sysinternals/downloads/procmon
 Clean up remaining things with autoruns : https://learn.microsoft.com/en-us/sysinternals/downloads/autoruns
-AccessEnum
+AccessEnum and look for important registries
+1. HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run
+
+    Purpose: This key is used to launch programs automatically when a user logs in. Malware often adds entries here to achieve persistence.
+    Check For: Unauthorized or suspicious entries that might indicate malware or unwanted software.
+
+2. HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run
+
+    Purpose: Similar to the above, but specific to the current user.
+    Check For: Unexpected entries that could be launching malware or unnecessary applications at login.
+
+3. HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services
+
+    Purpose: Contains configurations for services that are run by the system.
+    Check For: New or modified service entries, particularly those with unusual names or descriptions, as these can be indicative of rootkits or other stealthy malware types.
+
+4. HKEY_CLASSES_ROOT*\shell\open\command
+
+    Purpose: Determines actions taken when files are opened, often targeted to execute malware when certain files are opened.
+    Check For: Modifications that do not align with known applications or system behaviors.
+
+5. HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon
+
+    Purpose: Manages Windows logon process. Attackers target this to manipulate user authentication processes.
+    Check For: Unauthorized changes in keys like Userinit and Shell, which could redirect the logon process to malicious scripts or programs.
+
+6. HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+
+    Purpose: Contains various system-level policies, including security settings.
+    Check For: Changes that weaken security, like disabling the lock screen or UAC (User Account Control).
+
+7. HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings
+
+    Purpose: Manages Internet Explorer settings, including proxy configurations.
+    Check For: Unexpected proxy settings that could redirect internet traffic through malicious servers.
+
+8. HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\Folder\Hidden\SHOWALL
+
+    Purpose: Controls the visibility of hidden files in Explorer.
+    Check For: Changes that hide files from view, a common trick by malware to remain undetected.
+
+
 ProcHacker replaces need for PsExec(you can also run as system) : https://processhacker.sourceforge.io/downloads.php
 PsExec
           (you can use CMD OR POWERSHELL but it's just a system-level elevated prompt for commands where you for some reason don't have permissions)
@@ -91,6 +132,9 @@ PsExec
           icacls "C:\Windows\System32\OpenSSH" /grant rio:F /t
           requires $admin share so don't disable LanMan stuff until you don't need it anymore
 Entire SYSINTERNAL SUITE AVAIALBE AT : https://learn.microsoft.com/en-us/sysinternals/downloads/
+
+netstat -ano
+        tcpview (sysinternal)
 ===========================================================================================================================================================================================
 Registry/File System/Group Baselining
 ===========================================================================================================================================================================================
