@@ -197,6 +197,15 @@ FIX ANY PROBLEMS THAT OCCURED DURING SCRIPT
 
 Go into GPEDIT and import your firewall settings
 Open up file logs alongside everything tools and go through. Scan for any weird extensions, file names, and promptly remove. Look for any remaining applications that evaded the initial scan.
+        Open Everything: Launch the Everything application on your computer.
+                Access Settings: Go to the Tools menu and select Options to open the settings dialog.
+                Modify Index Settings:
+                    Navigate to the Indexes section.
+                    Look for options related to file attributes. Ensure that the Include hidden files and folders and Include system files and folders checkboxes are checked. This tells Everything to index hidden and system files.
+                Rebuild Index:
+                
+                    After changing these settings, you might need to rebuild the index for the changes to take effect.
+                    You can do this by going to the Tools menu and selecting Rebuild Index. Note that rebuilding the index might take some time, depending on the number of files on your system.
 ===========================================================================================================================================================================================
 SERVICE/APP SECURITY
 ===========================================================================================================================================================================================
