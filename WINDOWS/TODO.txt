@@ -30,6 +30,9 @@ make list of services that must be up and running before script
 PRACTICE WITH THE EVENT VIEWER / ID LIST TO FIND IMPORTANT CHANGES
 
 
+This machine is hosting the internal company email and webmail server, utilizing a XAMPP (Apache, MariaDB, PHP) stack. RoundCube 1.6.5 is the webmail software running and does not need to be updated at this time. For the SMTP/IMAP/POP3 server, hMailServer is configured for the afa.com domain.
+
+
 MISSING FROM APERTURE:
 24, 28, 29, 30, 31, 33, 34, 35, 36, 52, 53, 61(get from searchthrough script), 62(get from script), 63, 64, 65, 66-73, 83-91
 GO THROUGH EVERYTHING WITH CHAT GPT
