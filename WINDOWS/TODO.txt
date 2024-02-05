@@ -15,6 +15,7 @@ function Enable-PSScriptBlockLogging
 }
 
 signature scanning
+go through the following to learn defender security : https://github.com/Altoid0/MintKit/blob/master/PostExploitation/Invoke-NukeDefender.ps1
     research ntfs stuff how to delete what is bad
 some more good stuff : https://gist.github.com/mackwage/08604751462126599d7e52f233490efe?permalink_comment_id=4028081
 ensure firewlal is not in passive mode
